@@ -30,7 +30,7 @@ nav_order: 1
 - [MPLAB X IDE](https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide) v6.20
 - [MPLAB Code Configurator Plugin](https://www.microchip.com/en-us/tools-resources/configure/mplab-code-configurator)  v5.5.1
 - [MPLAB XC32](https://www.microchip.com/en-us/tools-resources/develop/mplab-xc-compilers) v4.45
-- [csp](https://github.com/Microchip-MPLAB-Harmony/csp) v3.19.5
+- [csp](https://github.com/Microchip-MPLAB-Harmony/csp) v3.19.6
 - SAME70_DFP v4.10.248
 
 Refer [Project Manifest](./firmware/src/config/sam_e70_xult/harmony-manifest-success.yml) present in harmony-manifest-success.yml under the project folder *firmware/src/config/sam_e70_xult*  
@@ -64,7 +64,7 @@ The pre-built hex file can be programmed by following the below steps
 - Follow the steps in "Running the Demo" section below
 
 ## Programming/Debugging Application Project:
-- Open the project (same70_usart_basic\firmware\sam_e70_xult.X) in MPLAB X IDE
+- Open the project (sam_e70_xult_usart_basic\firmware\sam_e70_xult.X) in MPLAB X IDE
 - Ensure "SAM E70 Xplained Ultra" is selected as hardware tool to program/debug the application
 - Build the code and program both the devices by clicking on the "Make and Program Device" button in MPLAB X IDE tool bar
 - Follow the steps in "Running the Demo" section below  

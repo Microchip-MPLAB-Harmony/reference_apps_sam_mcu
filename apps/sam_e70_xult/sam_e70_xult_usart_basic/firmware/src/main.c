@@ -61,6 +61,9 @@ bool USART1_readStatus = false;
 bool USART0_writeStatus = false;
 bool USART0_readStatus = false;
 
+//USART0 - Extension
+//USART 1 - EDBG
+
 void USART1_WriteEventHandler ( uintptr_t context )
 {
     USART1_writeStatus = true;

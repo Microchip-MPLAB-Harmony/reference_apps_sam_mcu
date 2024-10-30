@@ -62,6 +62,9 @@ volatile bool SERCOM_1_writeStatus = false;
 volatile bool SERCOM_5_readStatus = false;
 volatile bool SERCOM_5_writeStatus = false;
 
+//SERCOM 1 - Extension
+//SERCOM 5 - EDBG
+
 void SERCOM_1_WriteCallback(uintptr_t context)
 {
     SERCOM_1_writeStatus = true;

@@ -34,7 +34,7 @@ nav_order: 1
 - [MPLAB X IDE](https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide) v6.20
 - [MPLAB Code Configurator Plugin](https://www.microchip.com/en-us/tools-resources/configure/mplab-code-configurator)  v5.5.1
 - [MPLAB XC32](https://www.microchip.com/en-us/tools-resources/develop/mplab-xc-compilers) v4.45
-- [csp](https://github.com/Microchip-MPLAB-Harmony/csp) v3.19.5
+- [csp](https://github.com/Microchip-MPLAB-Harmony/csp) v3.19.6
 - SAMD21_DFP v3.6.144
 - [Logic 2 Software](https://www.saleae.com/pages/downloads?gad_source=1&gclid=CjwKCAjwxNW2BhAkEiwA24Cm9KGLD_xHCPJBRtSgUNVujkZRvFqLfVWTLGalrLMckyYz-9VuEeG6wxoCTWQQAvD_BwE) 
 
@@ -77,7 +77,7 @@ The pre-built hex file can be programmed by following the below steps
 - Follow the steps in "Running the Demo" section below
 
 ## Programming/Debugging Application Project:
-- Open the project (samd21_usart_hardware_handshaking\firmware\sam_d21_cnano.X) in MPLAB X IDE
+- Open the project (sam_d21_cnano_usart_hardware_handshaking\firmware\sam_d21_cnano.X) in MPLAB X IDE
 - Ensure "SAM D21 Curiosity Nano" is selected as hardware tool to program/debug the application
 - Build the code and program both the devices by clicking on the "Make and Program Device" button in MPLAB X IDE tool bar
 - Follow the steps in "Running the Demo" section below  

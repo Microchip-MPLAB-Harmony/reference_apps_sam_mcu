@@ -52,6 +52,8 @@
 #define RX_BUFFER_SIZE 1
 #define FRAC_BAUD_RATE 11000
 #define USART_SAMPLE_NUM 16
+#define BAUD_DIVISOR 1000
+#define BAUD_FRACTION_MULT 8
 // *****************************************************************************
 // *****************************************************************************
 // Section: Main Entry Point
@@ -65,6 +67,9 @@ bool USART0_readStatus = false;
 
 uint16_t cd;
 uint8_t fp;
+
+//USART0 - Extension
+//USART 1 - EDBG
 
 void USART1_WriteEventHandler ( uintptr_t context )
 {
@@ -86,17 +91,17 @@ void USART0_ReadEventHandler (uintptr_t context)
     USART0_readStatus = true;
 }
 
-void calculate_fractional_baud_value(const uint32_t baudrate,const uint32_t peripheral_clock,uint8_t sample_num)
+void USART_1_Fractional_Baud(const uint32_t baudrate,const uint32_t peripheral_clock,uint8_t sample_num)
 {
     uint32_t mul_ratio;
-    mul_ratio = (uint64_t)((uint64_t)peripheral_clock*(uint64_t)1000)/(uint64_t)(baudrate*sample_num);
-    cd = mul_ratio/1000;
-    fp = ((mul_ratio - (cd*1000))*8)/1000;
+    mul_ratio = (uint64_t)((uint64_t)peripheral_clock*(uint64_t)BAUD_DIVISOR)/(uint64_t)(baudrate*sample_num);
+    cd = mul_ratio/BAUD_DIVISOR;
+    fp = ((mul_ratio - (cd*BAUD_DIVISOR))*BAUD_FRACTION_MULT)/BAUD_DIVISOR;
 }
 
-void ext_usart_init(void)
+void USART_1_usart_init(void)
 {
-    calculate_fractional_baud_value(FRAC_BAUD_RATE,USART0_FrequencyGet(),USART_SAMPLE_NUM);
+    USART_1_Fractional_Baud(FRAC_BAUD_RATE,USART0_FrequencyGet(),USART_SAMPLE_NUM);
     
     USART0_REGS->US_CR = (US_CR_USART_RXDIS_Msk & US_CR_USART_TXDIS_Msk);
     
@@ -108,7 +113,7 @@ int main ( void )
 {
     /* Initialize all modules */
     SYS_Initialize ( NULL );
-    ext_usart_init();
+    USART_1_usart_init();
     
     // EDBG SERCOM Read and Write Callback
     USART1_WriteCallbackRegister(USART1_WriteEventHandler, (uintptr_t)NULL); 

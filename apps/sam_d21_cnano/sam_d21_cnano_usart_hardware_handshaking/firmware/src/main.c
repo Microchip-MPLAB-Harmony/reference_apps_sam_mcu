@@ -66,12 +66,14 @@ volatile bool writeStatus_SERCOM_1 = false;
 volatile bool readStatus_SERCOM_5 = false;
 volatile bool writeStatus_SERCOM_5 = false;
 
-void APP_SERCOM_1_WriteCallback(uintptr_t context)
+//SERCOM 1 - Extension
+
+void SERCOM_1_WriteCallback(uintptr_t context)
 {
     SERCOM1_USART_Write(&txBuffer, TX_BUFFER_SIZE);  
 }
 
-void APP_SERCOM_1_ReadCallback(uintptr_t context)
+void SERCOM_1_ReadCallback(uintptr_t context)
 {   
     readStatus_SERCOM_1 = true;
 }
@@ -83,8 +85,8 @@ int main ( void )
     SYSTICK_TimerStart();
     
     // Extension SERCOM Read and Write Callback
-    SERCOM1_USART_WriteCallbackRegister(APP_SERCOM_1_WriteCallback, 0);
-    SERCOM1_USART_ReadCallbackRegister(APP_SERCOM_1_ReadCallback, 0);
+    SERCOM1_USART_WriteCallbackRegister(SERCOM_1_WriteCallback, 0);
+    SERCOM1_USART_ReadCallbackRegister(SERCOM_1_ReadCallback, 0);
     
     // Read request for Extension
     SERCOM1_USART_Write(&txBuffer, TX_BUFFER_SIZE);

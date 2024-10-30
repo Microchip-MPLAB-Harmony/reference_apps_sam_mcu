@@ -15,6 +15,28 @@
     "main" function calls the "SYS_Initialize" function to initialize the state
     machines of all modules in the system
  *******************************************************************************/
+/*******************************************************************************
+* Copyright (C) 2020 Microchip Technology Inc. and its subsidiaries.
+*
+* Subject to your compliance with these terms, you may use Microchip software
+* and any derivatives exclusively with Microchip products. It is your
+* responsibility to comply with third party license terms applicable to your
+* use of third party software (including open source software) that may
+* accompany Microchip software.
+*
+* THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER
+* EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY IMPLIED
+* WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS FOR A
+* PARTICULAR PURPOSE.
+*
+* IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE,
+* INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND
+* WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS
+* BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO THE
+* FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN
+* ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
+* THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
+*******************************************************************************/
 
 // *****************************************************************************
 // *****************************************************************************
@@ -44,12 +66,14 @@ volatile bool USART0_readStatus = false;
 uint8_t rxBuffer;
 uint8_t txBuffer = 0xAA;
 
-void RTS_ENABLE(void)
+//USART0 - Extension
+
+void USART_0_RTS_Enable(void)
 {
     USART0_REGS->US_CR = US_CR_USART_RTSEN_Msk;
 }
 
-void RTS_DISABLE(void)
+void USART_0_RTS_Disable(void)
 {
     USART0_REGS->US_CR = US_CR_USART_RTSDIS_Msk;
 }
@@ -61,11 +85,11 @@ void USART0_WriteEventHandler ( uintptr_t context )
 
 void USART0_ReadEventHandler (uintptr_t context)
 {
-    RTS_ENABLE();
+    USART_0_RTS_Enable();
     USART0_readStatus = true;
 }
 
-void ext_usart_init()
+void USART_0_Init()
 {
     USART0_REGS->US_MR |= US_MR_USART_MODE_HW_HANDSHAKING;
 }
@@ -76,12 +100,12 @@ int main ( void )
     SYS_Initialize ( NULL );
     
     SYSTICK_TimerStart();
-    ext_usart_init();
+    USART_0_Init();
     
     USART0_WriteCallbackRegister(USART0_WriteEventHandler, (uintptr_t)NULL);
     USART0_ReadCallbackRegister(USART0_ReadEventHandler, (uintptr_t)NULL);
     
-    RTS_DISABLE();
+    USART_0_RTS_Disable();
     USART0_Read(&rxBuffer, RX_BUFFER_SIZE);
     
     USART0_Write(&txBuffer, TX_BUFFER_SIZE);
@@ -102,7 +126,7 @@ int main ( void )
             USART0_readStatus = false;
             
             //Receive transmitted bytes from EDBG
-            RTS_DISABLE();
+            USART_0_RTS_Disable();
             USART0_Read(&rxBuffer, RX_BUFFER_SIZE);
         }
         

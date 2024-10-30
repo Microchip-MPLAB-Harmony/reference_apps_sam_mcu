@@ -61,12 +61,14 @@ volatile bool rx_done = false;
 uint8_t edbg_rx_data;
 volatile bool tx_done = false;
 
-void APP_SERCOM_5_WriteCallback(uintptr_t context)
+//SERCOM 5 - EDBG
+
+void SERCOM_5_WriteCallback(uintptr_t context)
 {
    tx_done = true;
 }
 
-void APP_SERCOM_5_ReadCallback(uintptr_t context)
+void SERCOM_5_ReadCallback(uintptr_t context)
 {
     if((SERCOM5_REGS->USART_INT.SERCOM_INTFLAG & SERCOM_USART_INT_INTFLAG_RXS_Msk) == SERCOM_USART_INT_INTFLAG_RXS_Msk)
     {
@@ -77,7 +79,7 @@ void APP_SERCOM_5_ReadCallback(uintptr_t context)
     rx_done = true;
 }
 
-void usart_send_string(const char *str)
+void SERCOM_5_SendString(const char *str)
 {
     SERCOM5_USART_Write((void *)&str[0], strlen(str));
 }
@@ -89,8 +91,8 @@ int main ( void )
     SERCOM5_REGS->USART_INT.SERCOM_INTENSET = (uint8_t)SERCOM_USART_INT_INTENSET_RXS_Msk;
     
     // EDBG SERCOM Read and Write Callback
-    SERCOM5_USART_ReadCallbackRegister(APP_SERCOM_5_ReadCallback, 0);
-    SERCOM5_USART_WriteCallbackRegister(APP_SERCOM_5_WriteCallback, 0);
+    SERCOM5_USART_ReadCallbackRegister(SERCOM_5_ReadCallback, 0);
+    SERCOM5_USART_WriteCallbackRegister(SERCOM_5_WriteCallback, 0);
     
     // Read request for EDBG
     SERCOM5_USART_Read(&edbg_rx_data, RX_BUFFER_SIZE);
@@ -100,7 +102,7 @@ int main ( void )
         if (!rx_done)
         {
             tx_done = false;
-            usart_send_string("\r\n Device entered into standby sleep mode");
+            SERCOM_5_SendString("\r\n Device entered into standby sleep mode");
             while(!(SERCOM5_REGS->USART_INT.SERCOM_INTFLAG & SERCOM_USART_INT_INTFLAG_TXC_Msk));
             
             // Enters standby sleep mode.
@@ -109,7 +111,7 @@ int main ( void )
         while(!rx_done);
         
         tx_done = false;
-        usart_send_string("\r\n Character received after wakeup :");
+        SERCOM_5_SendString("\r\n Character received after wakeup :");
         while(!tx_done);
         
         tx_done = false;

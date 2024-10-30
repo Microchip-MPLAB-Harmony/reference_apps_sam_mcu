@@ -35,7 +35,7 @@
       </entry>
    </usedClasses>
    <usedLibraries class="java.util.ArrayList">
-      <ILibraryFile class="com.microchip.mcc.core.library.BaseLibraryFile" libraryClass="com.microchip.mcc.harmony.Harmony3Library" version="1.5.2"/>
+      <ILibraryFile class="com.microchip.mcc.core.library.BaseLibraryFile" libraryClass="com.microchip.mcc.harmony.Harmony3Library" version="1.5.3"/>
    </usedLibraries>
    <tokenMap class="java.util.TreeMap">
       <entry>
@@ -2934,7 +2934,7 @@
       </entry>
       <entry>
          <file>..\src\config\sam_d21_cnano\definitions.h</file>
-         <hash>307a99feb7afa4ece0a157d2a3ca2615c2249f87d259fbb4a66515b1c16e0a62</hash>
+         <hash>1c273e203dff122aa83bddb4167dcd4b8639e449934d2d889f6f7c6eabc3edd6</hash>
       </entry>
       <entry>
          <file>..\src\config\sam_d21_cnano\device.h</file>
