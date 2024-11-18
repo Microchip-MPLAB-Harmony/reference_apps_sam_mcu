@@ -25,10 +25,6 @@ This folder contains the MPLAB® Harmony 3 reference applications developed on [
 | | [ACK OTA Bootloader](./samd21_amazon_ack/bootloader/readme.md) | |
 | 6 | [Application migration from 8-bit PIC18F to 32-bit SAM D21](./pic18f_to_samd21_migration/readme.md) | [Click Here](https://github.com/Microchip-MPLAB-Harmony/reference_apps/releases/latest/download/pic18f_to_samd21_migration.zip)  |
 | 7 | [Application migration from 8-bit AVR to 32-bit SAM D21](./atmega4809_to_samd21_migration/readme.md) | [Click Here](https://github.com/Microchip-MPLAB-Harmony/reference_apps/releases/latest/download/atmega4809_to_samd21_migration.zip)  |
-| 8 | [Basic USART Configuration on SAM D21 Curiosity Nano Evaluation Kit](./sam_d21_cnano_usart_basic/readme.md) | [Click Here](https://github.com/Microchip-MPLAB-Harmony/reference_apps/releases/latest/download/sam_d21_cnano_usart_basic.zip)  |
-| 9 | [USART with Fractional Baud rate configuration on SAM D21 Curiosity Nano Evaluation Kit](./sam_d21_cnano_usart_fractional_baud/readme.md) | [Click Here](https://github.com/Microchip-MPLAB-Harmony/reference_apps/releases/latest/download/sam_d21_cnano_usart_fractional_baud.zip)  |
-| 10 | [USART hardware handshaking configuration in SAM D21 Curiosity Nano Evaluation Kit](./sam_d21_cnano_usart_hardware_handshaking/readme.md) | [Click Here](https://github.com/Microchip-MPLAB-Harmony/reference_apps/releases/latest/download/sam_d21_cnano_usart_hardware_handshaking.zip)  |
-| 11 | [SOF Detection and Wakeup Configuration on SAM D21 Curiosity Nano Evaluation Kit](./sam_d21_cnano_usart_sof_wakeup/readme.md) | [Click Here](https://github.com/Microchip-MPLAB-Harmony/reference_apps/releases/latest/download/sam_d21_cnano_usart_sof_wakeup.zip)  |
 
 
 ### More Application Demos

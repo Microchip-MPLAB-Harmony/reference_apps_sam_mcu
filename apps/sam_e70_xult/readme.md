@@ -19,9 +19,6 @@ This folder contains the MPLAB® Harmony 3 reference applications developed on [
 | 4 | [XDMAC with QSPI](./qspi_xdmac_read_write/readme.md) |  [Click Here](https://github.com/Microchip-MPLAB-Harmony/reference_apps/releases/latest/download/qspi_xdmac_read_write.zip) |
 | 5 | [Ethernet bootloader - File Transfer Protocol](./ftp_bootloader/readme.md) |  [Click Here](https://github.com/Microchip-MPLAB-Harmony/reference_apps/releases/latest/download/ftp_bootloader.zip) |
 | 6 | [TCM Performance](./same70_tcm_performance/readme.md) |  [Click Here](https://github.com/Microchip-MPLAB-Harmony/reference_apps/releases/latest/download/same70_tcm_performance.zip) |
-| 7 | [Basic USART Configuration on SAM E70 Xplained Ultra Evaluation Kit](./sam_e70_xult_usart_basic/readme.md) |  [Click Here](https://github.com/Microchip-MPLAB-Harmony/reference_apps/releases/latest/download/sam_e70_xult_usart_basic.zip) |
-| 8 | [USART with Fractional Baud rate configuration on SAM E70 Xplained Ultra Evaluation Kit](./sam_e70_xult_usart_fractional_baud/readme.md) |  [Click Here](https://github.com/Microchip-MPLAB-Harmony/reference_apps/releases/latest/download/sam_e70_xult_usart_fractional_baud.zip) |
-| 9 | [USART hardware handshaking configuration in SAM E70 Xplained Ultra Evaluation Kit](./sam_e70_xult_usart_hardware_handshaking/readme.md) |  [Click Here](https://github.com/Microchip-MPLAB-Harmony/reference_apps/releases/latest/download/sam_e70_xult_usart_hardware_handshaking.zip) |
 
 
 ### More Application Demos
