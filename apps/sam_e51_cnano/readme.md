@@ -1,4 +1,4 @@
-# BLE Fitness Tracker Application on SAM E51 Curiosity Nano Evaluation Kit and Nano Base for Click boards
+# SAM E51 Curiosity Nano Evaluation Kit
 
 -----
 
