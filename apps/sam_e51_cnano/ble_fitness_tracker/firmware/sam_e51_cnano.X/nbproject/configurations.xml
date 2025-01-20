@@ -4,11 +4,6 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <logicalFolder name="f1" displayName="ble" projectFiles="true">
-        <logicalFolder name="f1" displayName="non_gui" projectFiles="true">
-          <itemPath>../src/ble/non_gui/ble.h</itemPath>
-        </logicalFolder>
-      </logicalFolder>
       <logicalFolder name="click_routines"
                      displayName="click_routines"
                      projectFiles="true">
@@ -21,6 +16,9 @@
         </logicalFolder>
         <logicalFolder name="heartrate9" displayName="heartrate9" projectFiles="true">
           <itemPath>../src/click_routines/heartrate9/heartrate9.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="rnbd451" displayName="rnbd451" projectFiles="true">
+          <itemPath>../src/click_routines/rnbd451/rnbd451.h</itemPath>
         </logicalFolder>
         <itemPath>../src/click_routines/click_interface.h</itemPath>
       </logicalFolder>
@@ -73,6 +71,9 @@
               <itemPath>../src/config/sam_e51_cnano/peripheral/tc/plib_tc0.h</itemPath>
             </logicalFolder>
           </logicalFolder>
+          <logicalFolder name="rnbd" displayName="rnbd" projectFiles="true">
+            <itemPath>../src/config/sam_e51_cnano/rnbd/rnbd_interface.h</itemPath>
+          </logicalFolder>
           <logicalFolder name="f3" displayName="system" projectFiles="true">
             <logicalFolder name="f1" displayName="cache" projectFiles="true">
               <itemPath>../src/config/sam_e51_cnano/system/cache/sys_cache.h</itemPath>
@@ -102,17 +103,6 @@
           <itemPath>../src/config/sam_e51_cnano/interrupts.h</itemPath>
           <itemPath>../src/config/sam_e51_cnano/device_vectors.h</itemPath>
           <itemPath>../src/config/sam_e51_cnano/sys_tasks.h</itemPath>
-        </logicalFolder>
-      </logicalFolder>
-      <logicalFolder name="f4" displayName="custom_bt" projectFiles="true">
-        <logicalFolder name="f1" displayName="bm71" projectFiles="true">
-          <itemPath>../src/custom_bt/bm71/custom_bm71.h</itemPath>
-          <itemPath>../src/custom_bt/bm71/custom_bm71_ble.h</itemPath>
-          <itemPath>../src/custom_bt/bm71/custom_bm71_command_decode.h</itemPath>
-          <itemPath>../src/custom_bt/bm71/custom_bm71_command_send.h</itemPath>
-          <itemPath>../src/custom_bt/bm71/custom_bm71_gpio.h</itemPath>
-          <itemPath>../src/custom_bt/bm71/custom_bm71_local.h</itemPath>
-          <itemPath>../src/custom_bt/bm71/custom_bm71_uart.h</itemPath>
         </logicalFolder>
       </logicalFolder>
       <logicalFolder name="f5" displayName="packs" projectFiles="true">
@@ -242,6 +232,9 @@
           </logicalFolder>
         </logicalFolder>
       </logicalFolder>
+      <logicalFolder name="rnbd" displayName="rnbd" projectFiles="true">
+        <itemPath>../src/rnbd/rnbd.h</itemPath>
+      </logicalFolder>
       <itemPath>../src/app.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
@@ -263,11 +256,6 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <logicalFolder name="f1" displayName="ble" projectFiles="true">
-        <logicalFolder name="f1" displayName="non_gui" projectFiles="true">
-          <itemPath>../src/ble/non_gui/ble.c</itemPath>
-        </logicalFolder>
-      </logicalFolder>
       <logicalFolder name="click_routines"
                      displayName="click_routines"
                      projectFiles="true">
@@ -280,6 +268,9 @@
         </logicalFolder>
         <logicalFolder name="heartrate9" displayName="heartrate9" projectFiles="true">
           <itemPath>../src/click_routines/heartrate9/heartrate9.c</itemPath>
+        </logicalFolder>
+        <logicalFolder name="rnbd451" displayName="rnbd451" projectFiles="true">
+          <itemPath>../src/click_routines/rnbd451/rnbd451.c</itemPath>
         </logicalFolder>
       </logicalFolder>
       <logicalFolder name="f3" displayName="config" projectFiles="true">
@@ -323,6 +314,9 @@
               <itemPath>../src/config/sam_e51_cnano/peripheral/tc/plib_tc0.c</itemPath>
             </logicalFolder>
           </logicalFolder>
+          <logicalFolder name="rnbd" displayName="rnbd" projectFiles="true">
+            <itemPath>../src/config/sam_e51_cnano/rnbd/rnbd_interface.c</itemPath>
+          </logicalFolder>
           <logicalFolder name="f2" displayName="stdio" projectFiles="true">
             <itemPath>../src/config/sam_e51_cnano/stdio/xc32_monitor.c</itemPath>
           </logicalFolder>
@@ -345,15 +339,8 @@
           <itemPath>../src/config/sam_e51_cnano/tasks.c</itemPath>
         </logicalFolder>
       </logicalFolder>
-      <logicalFolder name="f4" displayName="custom_bt" projectFiles="true">
-        <logicalFolder name="f1" displayName="bm71" projectFiles="true">
-          <itemPath>../src/custom_bt/bm71/custom_bm71.c</itemPath>
-          <itemPath>../src/custom_bt/bm71/custom_bm71_ble.c</itemPath>
-          <itemPath>../src/custom_bt/bm71/custom_bm71_command_decode.c</itemPath>
-          <itemPath>../src/custom_bt/bm71/custom_bm71_command_send.c</itemPath>
-          <itemPath>../src/custom_bt/bm71/custom_bm71_gpio.c</itemPath>
-          <itemPath>../src/custom_bt/bm71/custom_bm71_uart.c</itemPath>
-        </logicalFolder>
+      <logicalFolder name="rnbd" displayName="rnbd" projectFiles="true">
+        <itemPath>../src/rnbd/rnbd.c</itemPath>
       </logicalFolder>
       <itemPath>../src/main.c</itemPath>
       <itemPath>../src/app.c</itemPath>
@@ -375,12 +362,12 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>nEdbgTool</platformTool>
         <languageToolchain>XC32</languageToolchain>
-        <languageToolchainVersion>4.30</languageToolchainVersion>
+        <languageToolchainVersion>4.45</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
         <pack name="CMSIS" vendor="ARM" version="5.8.0"/>
-        <pack name="SAME51_DFP" vendor="Microchip" version="3.7.242"/>
+        <pack name="SAME51_DFP" vendor="Microchip" version="3.8.253"/>
       </packs>
       <ScriptingSettings>
       </ScriptingSettings>
@@ -1104,6 +1091,7 @@
         <property key="debugoptions.debug-startup" value="Use system settings"/>
         <property key="debugoptions.reset-behaviour" value="Use system settings"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="event.recorder.debugger.behavior" value="Running"/>
         <property key="event.recorder.enabled" value="false"/>
         <property key="event.recorder.scvd.files" value=""/>
         <property key="firmware.path"
@@ -1162,6 +1150,7 @@
         <property key="debugoptions.debug-startup" value="Use system settings"/>
         <property key="debugoptions.reset-behaviour" value="Use system settings"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="event.recorder.debugger.behavior" value="Running"/>
         <property key="event.recorder.enabled" value="false"/>
         <property key="event.recorder.scvd.files" value=""/>
         <property key="firmware.path"

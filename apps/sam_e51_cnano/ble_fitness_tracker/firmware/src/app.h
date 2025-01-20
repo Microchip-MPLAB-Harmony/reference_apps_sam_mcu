@@ -59,7 +59,6 @@
 #include "peripheral/eic/plib_eic.h"
 #include "peripheral/port/plib_port.h"
 #include "definitions.h"
-#include "custom_bt/bm71/custom_bm71.h"
 
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
@@ -86,6 +85,7 @@ extern "C" {
 
 typedef enum
 {
+    APP_RNBD_INIT_STATE,
     /* Initial state. */
     APP_INIT_STATE,
 
@@ -210,41 +210,7 @@ void APP_Tasks( void );
 // *****************************************************************************
 /*** Bluetooth Driver Configuration ***/
 
-#define CUSTOM_BM71_CLIENTS_NUMBER                 1
-   
-/* Bluetooth Driver Abstraction definition */
-#define CUSTOM_BT_Initialize                       CUSTOM_BM71_Initialize
-#define CUSTOM_BT_Status                           CUSTOM_BM71_Status
-#define CUSTOM_BT_Tasks                            CUSTOM_BM71_Tasks
-#define CUSTOM_BT_Open                             CUSTOM_BM71_Open
-#define CUSTOM_BT_Close                            CUSTOM_BM71_Close
-#define CUSTOM_BT_EventHandlerSet                  CUSTOM_BM71_EventHandlerSet
-#define CUSTOM_BT_GetPowerStatus                   CUSTOM_BM71_GetPowerStatus
 
-#define CUSTOM_BT_EVENT_HANDLER                    CUSTOM_BM71_EVENT_HANDLER
-#define CUSTOM_BT_EVENT                            CUSTOM_BM71_EVENT
-#define CUSTOM_BT_EVENT_BLESPP_MSG_RECEIVED        CUSTOM_BM71_EVENT_BLESPP_MSG_RECEIVED
-#define CUSTOM_BT_EVENT_BLE_STATUS_CHANGED         CUSTOM_BM71_EVENT_BLE_STATUS_CHANGED
-
-#define CUSTOM_BT_PROTOCOL_BLE                     CUSTOM_BM71_PROTOCOL_BLE               
-#define CUSTOM_BT_PROTOCOL                         CUSTOM_BM71_PROTOCOL
-
-#define CUSTOM_BT_STATUS_READY                     CUSTOM_BM71_STATUS_READY
-
-#define CUSTOM_BT_BLE_STATUS                       CUSTOM_BM71_BLE_STATUS
-#define CUSTOM_BT_BLE_STATUS_STANDBY               CUSTOM_BM71_BLE_STATUS_STANDBY
-#define CUSTOM_BT_BLE_STATUS_ADVERTISING           CUSTOM_BM71_BLE_STATUS_ADVERTISING
-#define CUSTOM_BT_BLE_STATUS_SCANNING              CUSTOM_BM71_BLE_STATUS_SCANNING
-#define CUSTOM_BT_BLE_STATUS_CONNECTED             CUSTOM_BM71_BLE_STATUS_CONNECTED
-
-#define CUSTOM_BT_ClearBLEData                     CUSTOM_BM71_ClearBLEData
-#define CUSTOM_BT_ReadDataFromBLE                  CUSTOM_BM71_ReadDataFromBLE
-#define CUSTOM_BT_SendDataOverBLE                  CUSTOM_BM71_SendDataOverBLE
-
-#define CUSTOM_BT_BLE_QueryStatus                  CUSTOM_BM71_BLE_QueryStatus
-#define CUSTOM_BT_BLE_EnableAdvertising            CUSTOM_BM71_BLE_EnableAdvertising
-
-//DOM-IGNORE-BEGIN
 #ifdef __cplusplus
 }
 #endif

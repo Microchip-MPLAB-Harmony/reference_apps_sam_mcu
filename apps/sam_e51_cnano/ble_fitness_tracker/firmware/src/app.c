@@ -56,9 +56,60 @@
 #include "click_routines/eink_epaper_2_9_296_128/eink_epaper_2_9_296_128.h"
 #include "click_routines/eink_epaper_2_9_296_128/eink_epaper_2_9_296_128_image.h"
 #include "click_routines/eink_epaper_2_9_296_128/eink_epaper_2_9_296_128_font.h"
-#include "../src/ble/non_gui/ble.h"
+#include "click_routines/click_interface.h"
+#include "click_routines/rnbd451/rnbd451.h"
 
-extern BLE_DATA bleData;
+const char DevName[]="MCHP_SAM_E51_HR";
+uint8_t service_uuid=0xC0;
+bool Err;
+int8_t heart_rate;
+char HR_data[2] = ""; 
+
+typedef enum
+{
+    /* TODO: Define states used by the application state machine. */
+    RNBD_INIT,
+    RNBD_FACTORY_RESET,
+    RNBD_CMD,
+    RNBD_CMD1,
+    RNBD_CMD2,
+    RNBD_CMD3,
+    RNBD_SET_NAME,
+    RNBD_SET_PROFILE,
+    RNBD_SET_APPEARANCE,
+    RNBD_REBOOT,
+    RNBD_REBOOT1,      
+    RNBD_SERVICE_UUID,
+    RNBD_SERVICE_CHARACTERISTICS,
+    RNBD_SERVICE_CHARACTERISTICS1,
+    RNBD_SERVICE_CHARACTERISTICS2,
+       
+            
+} STATES;
+
+typedef enum
+{
+  RNBD_SEND_HR_DATA,
+  RNBD_DISPLAY_HR_DATA,
+  RNBD_SEND_HRBS,
+  RNBD_WAIT,  
+} SEND_DATA;
+
+typedef struct
+{
+    /* The application's current state */
+    STATES state;
+    
+} RNBD_STATE;
+
+RNBD_STATE rnbd_state;
+
+typedef struct
+{
+    SEND_DATA data;
+}RNBD_DATA;
+
+RNBD_DATA rnbd_data;
 
 // *****************************************************************************
 // *****************************************************************************
@@ -90,14 +141,29 @@ volatile    bool    button_pressed = false;
             uint8_t hr_measurment_handle;
             bool    rdy_signal = false;
             char    lcl_buffer[10];
-static            int8_t heartRateMeasuredData  = -1;
+int i = 10;
+volatile    bool   get_rnbd_init_state = false;
 
+int8_t heartrate9_example(void) {
+    int8_t heartrate_data = -1;
+    // Check the Heartrate Ready Status
+    if(true == is_heartrate9_byte_ready())
+    {
+        // Return the Heartrate 
+        while(heartrate_data == -1)
+        {
+            heartrate_data = heartrate9_read_byte();
+        }
+        printf("Heartrate = %d bpm \t\r\n", (uint8_t)heartrate_data);
+    }
+    return heartrate_data;
+}
 
 // *****************************************************************************
 // *****************************************************************************
 static void EIC_Button_Handler(uintptr_t context)
 {
-    CNANO_LED_Clear();
+  
     button_pressed = true;
 }
 
@@ -118,17 +184,6 @@ static void EIC_Button_Handler(uintptr_t context)
 // *****************************************************************************
 // *****************************************************************************
 
-void send_hr_data_over_ble(void)
-{
-    uint8_t tempBuffer[21] = {0};
-
-    tempBuffer[0] = 0x00;//Status of HR data is single byte
-    tempBuffer[1] = heartRateMeasuredData;
-    tempBuffer[2] = '\r';
-    tempBuffer[3] = '\n';  
-    CUSTOM_BT_SendDataOverBLE(bleData.bt.handle, (uint8_t*)tempBuffer, 2);
-}
-
 /*******************************************************************************
   Function:
     void APP_Initialize ( void )
@@ -137,11 +192,243 @@ void send_hr_data_over_ble(void)
     See prototype in app.h.
  */
 
+
+
+void RNBD_heartrate_example_initialize(void)
+{
+    switch(rnbd_state.state)
+    {
+        case RNBD_INIT:
+        {
+            Err= rnbd451_init();
+            if(Err)
+            {
+                Err=false;
+                printf("RNBD451_INITIALIZING\r\n");
+                rnbd_state.state=RNBD_CMD;        
+            }
+        }
+        case RNBD_CMD:
+        {
+            Err=rnbd451_enter_cmd_mode();
+            if(Err)
+            {
+                Err=false;                
+                printf("Entered CMD Mode\r\n");
+                rnbd_state.state=RNBD_FACTORY_RESET;
+            }
+        }
+        case RNBD_FACTORY_RESET:
+        {
+            Err=rnbd451_factory_reset();
+            if(Err)
+            {
+                Err=false;                
+                printf("Factory Reset Done\r\n");
+                rnbd_state.state=RNBD_CMD1;
+            }
+        }
+        case RNBD_CMD1:
+        {
+            Err=rnbd451_enter_cmd_mode();
+            if(Err)
+            {
+                Err=false;                
+                printf("Entered CMD Mode\r\n");
+                rnbd_state.state=RNBD_SET_NAME;
+            }
+        }
+        case RNBD_SET_NAME:
+        {
+            Err=rnbd451_set_name(DevName,strlen(DevName));
+            if(Err)
+            {
+                Err=false;                
+                printf("Device Name Set\r\n");
+                rnbd_state.state=RNBD_SET_PROFILE;
+            }
+        }
+        case RNBD_SET_PROFILE:
+        {
+            Err=rnbd451_set_service_bitmap(service_uuid);
+            if(Err)
+            {
+                Err=false;                
+                printf("Service Bitmap Set\r\n");
+                rnbd_state.state=RNBD_SET_APPEARANCE;
+            }
+        }
+        case RNBD_SET_APPEARANCE:
+        {
+            char appearance[]="0340";
+            Err=rnbd451_set_appearance(appearance,strlen(appearance));
+            if(Err)
+            {
+                Err=false;                
+                printf("Appearance Set\r\n");
+                rnbd_state.state=RNBD_REBOOT;
+            }
+        }
+        case RNBD_REBOOT:
+        {
+            Err=rnbd451_reboot_cmd();
+            if(Err)
+            {
+                Err=false;                
+                printf("Reboot Completed\r\n");
+                rnbd_state.state=RNBD_CMD2;
+            }
+        }
+        case RNBD_CMD2:
+        {
+            Err=rnbd451_enter_cmd_mode();
+            if(Err)
+            {
+                Err=false;                
+                printf("Entered CMD Mode\r\n");
+                rnbd_state.state=RNBD_SERVICE_UUID;
+            }
+        }
+        case RNBD_SERVICE_UUID:
+        {
+            char PS[]="180D";
+            Err=rnbd451_set_service_uuid(PS,strlen(PS));
+            if(Err)
+            {
+                Err=false;                
+                printf("Service UUID Set\r\n");
+                rnbd_state.state=RNBD_SERVICE_CHARACTERISTICS;
+            }
+        }
+        case RNBD_SERVICE_CHARACTERISTICS:
+        {
+            char PC[]="2A37,10,05";
+            Err=rnbd451_set_service_characteristic(PC,strlen(PC));
+            if(Err)
+            {
+                Err=false;                
+                printf("Service Characteristics Set\r\n");
+                rnbd_state.state=RNBD_SERVICE_CHARACTERISTICS1;
+            }
+        }
+        case RNBD_SERVICE_CHARACTERISTICS1:
+        {
+            char PC1[]="2A38,02,05";
+            Err=rnbd451_set_service_characteristic(PC1,strlen(PC1));
+            if(Err)
+            {
+                Err=false;                
+                printf("Service Characteristics Set\r\n");
+                rnbd_state.state=RNBD_SERVICE_CHARACTERISTICS2;
+            }
+        }
+        case RNBD_SERVICE_CHARACTERISTICS2:
+        {
+            char PC2[]="2A39,08,05";
+            Err=rnbd451_set_service_characteristic(PC2,strlen(PC2));
+            if(Err)
+            {
+                Err=false;                
+                printf("Service Characteristics Set\r\n");
+                rnbd_state.state=RNBD_REBOOT1;
+            }
+        }
+        case RNBD_REBOOT1:
+        {
+            Err=rnbd451_reboot_cmd();
+            if(Err)
+            {
+                Err=false;                
+                printf("Reboot Completed\r\n");
+                rnbd_state.state=RNBD_CMD3;
+            }
+        }
+        case RNBD_CMD3:
+        {
+            Err=rnbd451_enter_cmd_mode();
+            if(Err)
+            {
+                Err=false;                
+                printf("Entered CMD Mode\r\n");
+               // rnbd_state.state=RNBD_SEND_HRBS;
+            }
+        }
+        
+    }    
+}
+
+void RNBD_heartrate_example(void){
+switch(rnbd_data.data)
+{
+case RNBD_SEND_HRBS:
+        {
+            char handle[]="1005,03";
+            Err= rnbd451_write_local_characteristic(handle,strlen(handle),0,0);
+            if(Err)
+            {
+            Err=false;
+            printf("HRBS Set\r\n");
+            printf("Press the User Button to Start Measuring the Heart Rate\r\n");
+            rnbd_data.data=RNBD_WAIT;  
+            }
+        }
+        case RNBD_WAIT:
+        {
+            
+            Err=false;
+            
+            if(button_pressed == true)
+            {
+                button_pressed = false;
+                printf("!!! Measuring Heart Rate !!!\r\n");                
+                heart_rate = heartrate9_example();                
+                if(heart_rate != -1)
+                {                
+                    rnbd_data.data= RNBD_DISPLAY_HR_DATA;
+                }
+                else
+                {
+                    rnbd_data.data=RNBD_WAIT;
+                }         
+            }
+            else
+            {
+               rnbd_data.data=RNBD_WAIT; 
+            }
+        }
+        case RNBD_DISPLAY_HR_DATA:
+        {
+            //printf("Heartrate = %d bpm \t\r\n", (uint8_t)heartRateMeasuredData); 
+            sprintf(lcl_buffer, "%dbpm", (uint8_t)heart_rate);
+            CNANO_LED_Set();
+            eink_epaper_2_9_296_128_fill_screen( EINK_EPAPER_2_9_296_128_COLOR_BLACK );
+            eink_epaper_2_9_296_128_image_bmp(heartrate_image);
+            eink_epaper_2_9_296_128_set_font( guiFont_Tahoma_10_Regular, EINK_EPAPER_2_9_296_128_COLOR_WHITE, FO_HORIZONTAL );
+            lcl_buffer[9]='\0';
+            eink_epaper_2_9_296_128_text(lcl_buffer, 14, 148 );
+            if(true)
+            {
+                rnbd_state.state=RNBD_SEND_HR_DATA;  
+            }
+        }
+        case RNBD_SEND_HR_DATA:
+        {
+            char handle[]="1002";
+            sprintf(HR_data,"%x",heart_rate);
+            Err=rnbd451_write_local_characteristic(handle,strlen(handle),HR_data,2);
+            if(Err)
+            {
+            Err=false;
+            rnbd_data.data=RNBD_WAIT;  
+            }
+        }
+}
+}
+
 void APP_Initialize ( void )
 {
     appData.app_state           = APP_INIT_STATE;
 }
-
 /******************************************************************************
   Function:
     void APP_Tasks ( void )
@@ -151,8 +438,6 @@ void APP_Initialize ( void )
  */
 void APP_Tasks ( void )
 {
-    CUSTOM_BM71_Tasks();
-    bleTasks(); 
 
     /* Check the application's current state. */
     switch ( appData.app_state )
@@ -163,47 +448,47 @@ void APP_Tasks ( void )
             eink_epaper_2_9_296_128_fill_screen( EINK_EPAPER_2_9_296_128_COLOR_BLACK );
             eink_epaper_2_9_296_128_image_bmp(mchp_logo);
             eink_epaper_2_9_296_128_set_font( guiFont_Tahoma_10_Regular, EINK_EPAPER_2_9_296_128_COLOR_WHITE, FO_HORIZONTAL );
-
+            
             EIC_CallbackRegister(EIC_PIN_15, EIC_Button_Handler, 0);
-            CUSTOM_BM71_Initialize();
-            appData.app_state           = APP_IDLE_STATE;
+            rnbd_state.state=RNBD_INIT;
+            appData.app_state           = APP_RNBD_INIT_STATE;
+            break;
+        case APP_RNBD_INIT_STATE:
+            if (get_rnbd_init_state ==  false)
+            {
+                RNBD_heartrate_example_initialize();
+                appData.app_state = APP_IDLE_STATE;
+            }
+            else
+            {
+                
+            }
             break;
         case CHKNG_HEART_RATE_DATA_RDY_STATE:
             CNANO_LED_Clear();
-            if(true == is_heartrate9_byte_ready())  // Checking the Heartrate sensor data ready Status
+            if(true)  // Checking the Heartrate sensor data ready Status
             {
-                heartRateMeasuredData   = -1;
+                
                 appData.app_state       = HEART_RATE_SENSOR_DATA_PROSS_STATE;
             }
             break;
         case HEART_RATE_SENSOR_DATA_PROSS_STATE:
-            heartRateMeasuredData       = heartrate9_read_byte();
-            if(heartRateMeasuredData != -1)             // Checking the Heartrate sensor data process completed
+            if( true )             // Checking the Heartrate sensor data process completed
             {
+                rnbd_data.data = RNBD_SEND_HRBS;
+                RNBD_heartrate_example();
                 appData.app_state       = EINK_EPAPER_2_9_296_128_UPDATE_STATE;
             }
             break;
         case EINK_EPAPER_2_9_296_128_UPDATE_STATE:
-            printf("Heartrate = %d bpm \t\r\n", (uint8_t)heartRateMeasuredData); 
-            sprintf(lcl_buffer, "%dbpm", (uint8_t)heartRateMeasuredData);
-            CNANO_LED_Set();
-            eink_epaper_2_9_296_128_fill_screen( EINK_EPAPER_2_9_296_128_COLOR_BLACK );
-            eink_epaper_2_9_296_128_image_bmp(heartrate_image);
-            eink_epaper_2_9_296_128_set_font( guiFont_Tahoma_10_Regular, EINK_EPAPER_2_9_296_128_COLOR_WHITE, FO_HORIZONTAL );
-            lcl_buffer[9]='\0';
-            eink_epaper_2_9_296_128_text(lcl_buffer, 14, 148 );
+            
             button_pressed              = false;
-            if(hr_measurment_request == 1)
-            {
-                hr_measurment_request   = 0;
-                send_hr_data_over_ble();
-            }
+                                       
             appData.app_state           = APP_IDLE_STATE;
             break;
         case APP_IDLE_STATE:
             if (appData.queryDelay == 0)
             {
-                CUSTOM_BT_BLE_QueryStatus(bleData.bt.handle);
                 appData.queryDelay = QUERY_DELAY;
             }
             if(button_pressed == true)

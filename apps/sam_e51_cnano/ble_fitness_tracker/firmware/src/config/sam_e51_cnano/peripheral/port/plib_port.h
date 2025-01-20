@@ -65,15 +65,6 @@
 // *****************************************************************************
 // *****************************************************************************
 
-/*** Macros for BM71_RX_IND pin ***/
-#define BM71_RX_IND_Set()               (PORT_REGS->GROUP[1].PORT_OUTSET = ((uint32_t)1U << 4U))
-#define BM71_RX_IND_Clear()             (PORT_REGS->GROUP[1].PORT_OUTCLR = ((uint32_t)1U << 4U))
-#define BM71_RX_IND_Toggle()            (PORT_REGS->GROUP[1].PORT_OUTTGL = ((uint32_t)1U << 4U))
-#define BM71_RX_IND_OutputEnable()      (PORT_REGS->GROUP[1].PORT_DIRSET = ((uint32_t)1U << 4U))
-#define BM71_RX_IND_InputEnable()       (PORT_REGS->GROUP[1].PORT_DIRCLR = ((uint32_t)1U << 4U))
-#define BM71_RX_IND_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 4U)) & 0x01U)
-#define BM71_RX_IND_PIN                  PORT_PIN_PB04
-
 /*** Macros for CLICK_HEARTRATE9_RST pin ***/
 #define CLICK_HEARTRATE9_RST_Set()               (PORT_REGS->GROUP[1].PORT_OUTSET = ((uint32_t)1U << 6U))
 #define CLICK_HEARTRATE9_RST_Clear()             (PORT_REGS->GROUP[1].PORT_OUTCLR = ((uint32_t)1U << 6U))
@@ -83,14 +74,14 @@
 #define CLICK_HEARTRATE9_RST_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 6U)) & 0x01U)
 #define CLICK_HEARTRATE9_RST_PIN                  PORT_PIN_PB06
 
-/*** Macros for STBYRST pin ***/
-#define STBYRST_Set()               (PORT_REGS->GROUP[1].PORT_OUTSET = ((uint32_t)1U << 8U))
-#define STBYRST_Clear()             (PORT_REGS->GROUP[1].PORT_OUTCLR = ((uint32_t)1U << 8U))
-#define STBYRST_Toggle()            (PORT_REGS->GROUP[1].PORT_OUTTGL = ((uint32_t)1U << 8U))
-#define STBYRST_OutputEnable()      (PORT_REGS->GROUP[1].PORT_DIRSET = ((uint32_t)1U << 8U))
-#define STBYRST_InputEnable()       (PORT_REGS->GROUP[1].PORT_DIRCLR = ((uint32_t)1U << 8U))
-#define STBYRST_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 8U)) & 0x01U)
-#define STBYRST_PIN                  PORT_PIN_PB08
+/*** Macros for STBY_RST pin ***/
+#define STBY_RST_Set()               (PORT_REGS->GROUP[1].PORT_OUTSET = ((uint32_t)1U << 8U))
+#define STBY_RST_Clear()             (PORT_REGS->GROUP[1].PORT_OUTCLR = ((uint32_t)1U << 8U))
+#define STBY_RST_Toggle()            (PORT_REGS->GROUP[1].PORT_OUTTGL = ((uint32_t)1U << 8U))
+#define STBY_RST_OutputEnable()      (PORT_REGS->GROUP[1].PORT_DIRSET = ((uint32_t)1U << 8U))
+#define STBY_RST_InputEnable()       (PORT_REGS->GROUP[1].PORT_DIRCLR = ((uint32_t)1U << 8U))
+#define STBY_RST_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 8U)) & 0x01U)
+#define STBY_RST_PIN                  PORT_PIN_PB08
 
 /*** Macros for EPAPER_2_9_296_128_BSY pin ***/
 #define EPAPER_2_9_296_128_BSY_Set()               (PORT_REGS->GROUP[0].PORT_OUTSET = ((uint32_t)1U << 4U))
@@ -100,6 +91,15 @@
 #define EPAPER_2_9_296_128_BSY_InputEnable()       (PORT_REGS->GROUP[0].PORT_DIRCLR = ((uint32_t)1U << 4U))
 #define EPAPER_2_9_296_128_BSY_Get()               (((PORT_REGS->GROUP[0].PORT_IN >> 4U)) & 0x01U)
 #define EPAPER_2_9_296_128_BSY_PIN                  PORT_PIN_PA04
+
+/*** Macros for BT_RST pin ***/
+#define BT_RST_Set()               (PORT_REGS->GROUP[0].PORT_OUTSET = ((uint32_t)1U << 6U))
+#define BT_RST_Clear()             (PORT_REGS->GROUP[0].PORT_OUTCLR = ((uint32_t)1U << 6U))
+#define BT_RST_Toggle()            (PORT_REGS->GROUP[0].PORT_OUTTGL = ((uint32_t)1U << 6U))
+#define BT_RST_OutputEnable()      (PORT_REGS->GROUP[0].PORT_DIRSET = ((uint32_t)1U << 6U))
+#define BT_RST_InputEnable()       (PORT_REGS->GROUP[0].PORT_DIRCLR = ((uint32_t)1U << 6U))
+#define BT_RST_Get()               (((PORT_REGS->GROUP[0].PORT_IN >> 6U)) & 0x01U)
+#define BT_RST_PIN                  PORT_PIN_PA06
 
 /*** Macros for EPAPER_2_9_296_128_RST pin ***/
 #define EPAPER_2_9_296_128_RST_Set()               (PORT_REGS->GROUP[0].PORT_OUTSET = ((uint32_t)1U << 7U))

@@ -46,6 +46,8 @@
 
 #include <xc.h>
 #include <stdint.h>
+#include <rnbd/rnbd.h>
+#include "rnbd/rnbd_interface.h"
 
 /** Click routine interfaces/resources Macro Declarations
  *
@@ -106,5 +108,16 @@
 // Timer Definitions
 #define CLICK_HEARTRATE9_TimerStart                         SYSTICK_TimerStart
 #define CLICK_HEARTRATE9_DelayMs                            SYSTICK_DelayMs
+
+#define CLICK_RNBD451_Init                                  RNBD_Init
+#define CLICK_RNBD_EnterCmdMode                             RNBD_EnterCmdMode
+#define CLICK_RNBD_FactoryReset                             RNBD_FactoryReset
+#define CLICK_RNBD_SetName                                  RNBD_SetName
+#define CLICK_RNBD_SetServiceBitmap                         RNBD_SetServiceBitmap
+#define CLICK_RNBD_SetAppearance                            RNBD_SetAppearance
+#define CLICK_RNBD_RebootCmd                                RNBD_RebootCmd
+#define CLICK_RNBD_SetServiceUUID                           RNBD_SetServiceUUID
+#define CLICK_RNBD_SetServiceCharacteristic                 RNBD_SetServiceCharacteristic
+#define CLICK_RNBD_WriteLocalCharacteristic                 RNBD_WriteLocalCharacteristic
 
 #endif // CLICK_INTERFACES_H

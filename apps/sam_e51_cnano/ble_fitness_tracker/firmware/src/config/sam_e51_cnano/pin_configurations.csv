@@ -3,15 +3,15 @@ Pin Number,Pin ID,Custom Name,Function,Mode, Direction,Latch,Pull Up,Pull Down,D
 2,PA01,,Available,,,,,,NORMAL
 3,PA02,,Available,,,,,,NORMAL
 4,PA03,,Available,,,,,,NORMAL
-5,PB04,BM71_RX_IND,GPIO,Digital,Out,High,,,NORMAL
+5,PB04,,Available,,,,,,NORMAL
 6,PB05,,Available,,,,,,NORMAL
 9,PB06,CLICK_HEARTRATE9_RST,GPIO,Digital,Out,High,,,NORMAL
 10,PB07,,Available,,,,,,NORMAL
-11,PB08,STBYRST,GPIO,Digital,Out,High,,,NORMAL
+11,PB08,STBY_RST,GPIO,Digital,Out,High,,,NORMAL
 12,PB09,,Available,,,,,,NORMAL
 13,PA04,EPAPER_2_9_296_128_BSY,GPIO,Digital,In,n/a,No,No,NORMAL
 14,PA05,,Available,,,,,,NORMAL
-15,PA06,,Available,,,,,,NORMAL
+15,PA06,BT_RST,GPIO,Digital,Out,Low,,,NORMAL
 16,PA07,EPAPER_2_9_296_128_RST,GPIO,Digital,Out,High,,,NORMAL
 17,PA08,,SERCOM0_PAD0,Digital,High Impedance,n/a,No,No,NORMAL
 18,PA09,,SERCOM0_PAD1,Digital,High Impedance,n/a,No,No,NORMAL
