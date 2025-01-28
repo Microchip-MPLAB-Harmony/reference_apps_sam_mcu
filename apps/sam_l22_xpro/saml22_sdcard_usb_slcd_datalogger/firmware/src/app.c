@@ -87,7 +87,13 @@ uint16_t adc_count;
 uint32_t input_voltage;
 uint32_t photo_current,light_intensity,Prevphoto_current=99999;
 struct tm sys_time;
-
+volatile bool LoggedDataRead=0;
+extern char receiveBuffer[1];
+char messageStart1[] = "\n ****Set the Date in DD:MM:YY and Time in HH:MM:YY(24Hrs format)****\r\n\
+**** To set 1JAN23 7PM set 01:01:23-19:00:00 ****\r\n";
+char messageStart[] = "\n Time Set!";
+char timeBuffer[17] = {};
+char echoBuffer[17] = {};
 // *****************************************************************************
 // *****************************************************************************
 // Section: Application Callback Functions
@@ -213,10 +219,6 @@ void APP_SLCD_Initialize ( void )
     slcd_set_pixel(1,13);
     slcd_set_pixel(1,12);
     
-    
-   // slcd_set_pixel(4,14);
-  //  slcd_set_pixel(4,15);
-    
 }
 /******************************************************************************
   Function:
@@ -327,17 +329,12 @@ void APP_Tasks_SD_FS ( void )
            
                 SYS_FS_FileSeek(appData.fileHandle,0,SYS_FS_SEEK_CUR);
             
-               
-               // SYS_FS_FilePrintf(appData.fileHandle,"ADC Count = 0x%x, Light Intensity = %d.%03d Lux \r", adc_count, (int)(photo_current/1000), (int)(photo_current%1000));
-                 
                  RTC_RTCCTimeGet(&sys_time);
                  SYS_FS_FilePrintf(appData.fileHandle,"\r Time:%02d/%02d/%d - %02d:%02d:%02d     ",sys_time.tm_mday,(sys_time.tm_mon)+1,(sys_time.tm_year)+1900,sys_time.tm_hour, sys_time.tm_min, sys_time.tm_sec); 
-                 
-                
-                 
                  SYS_FS_FilePrintf(appData.fileHandle,"ADC Count = 0x%03x,     Light Intensity = %02d.%03d  Lux     ", adc_count, (int)(photo_current/1000), (int)(photo_current%1000));
                  SYS_FS_FilePrintf(appData.fileHandle,"Temperature = %d C", CurrentTemp);
                  appData.state = APP_CLOSE_FILE;
+                 SLCD_BACKLIGHT_Toggle();
              
             break;
 
@@ -365,10 +362,41 @@ void APP_Tasks_SD_FS ( void )
         case APP_ERROR:
           
             /* The application comes here when the demo has failed. */
-            break;
-
+        break;
+          
+        case APP_USB_MSD_READ:
+          
+            /* The application comes here when the logged data .txt file is read from the USB with the SD card enumerated as a MSD */
+            if (LoggedDataRead == 1)
+                {
+                    SYS_FS_Unmount(SDCARD_MOUNT_NAME);
+                    SLCD_BACKLIGHT_Set();
+                }
+        break;
+        
+        case APP_TIME_INPUT:
+        SERCOM4_USART_Write(&messageStart1[0], sizeof(messageStart1));
+        SERCOM4_USART_Read(&timeBuffer[0], sizeof(timeBuffer));
+        appData.state = APP_IDLE;
+        break;
+        
+        case APP_TIME_SET:
+        sys_time.tm_hour = (10*(timeBuffer[9]-48))+(timeBuffer[10]-48);      /* hour [0,23] */
+        sys_time.tm_sec = (10*(timeBuffer[15]-48))+(timeBuffer[16]-48);         /* seconds [0,61] */
+        sys_time.tm_min = (10*(timeBuffer[12]-48))+(timeBuffer[13]-48);         /* minutes [0,59] */
+        sys_time.tm_mon = ((10*(timeBuffer[3]-48))+(timeBuffer[4]-48))-1;          /* month of year [0,11] */
+        sys_time.tm_year = ((10*(timeBuffer[6]-48))+(timeBuffer[7]-48))+100;       /* years since 1900 */
+        sys_time.tm_mday = (10*(timeBuffer[0]-48))+(timeBuffer[1]-48);  ;      /* day of month [1,31] */
+        
+        SERCOM4_USART_Write(&messageStart[0], sizeof(messageStart));
+        SERCOM4_USART_Read(&receiveBuffer[0], sizeof(receiveBuffer));
+        RTC_RTCCTimeSet(&sys_time);
+        appData.state = APP_IDLE;
+        break;
+        
         default:
-            break;
+            
+        break;
     }
 }
 
@@ -461,7 +489,7 @@ void APP_Tasks_USB ( void )
 }
 
 void APP_Tasks_ADC(void)
-{
+{       
     /* Start ADC conversion */
         ADC_ConversionStart();
 
@@ -476,6 +504,7 @@ void APP_Tasks_ADC(void)
         input_voltage = adc_count * ADC_VREF / 4095U;
         photo_current=(3300 - input_voltage)*20;
         light_intensity=photo_current/1000; //in LUX
+
 }
 
 void APP_TASKS_DISPLAY_TEMP(unsigned char temperature)
@@ -516,7 +545,19 @@ void APP_TASKS_DISPLAY_LSOUT(uint32_t photo_current)
     Display_Character(TensDigitLS,1);
     Display_Character(UnitDigitLS,4);
 }
-
+void APP_TASKS_DISPLAY_SLCD(void)
+{
+     if(PrevTemp !=CurrentTemp)
+     {
+     APP_TASKS_DISPLAY_TEMP(CurrentTemp);
+     PrevTemp=CurrentTemp;
+     }
+     if(Prevphoto_current != light_intensity)
+     {
+     APP_TASKS_DISPLAY_LSOUT(light_intensity);
+     Prevphoto_current = light_intensity;
+     }
+}
 
 
 void Display_Character(unsigned char value,unsigned char pos)
@@ -607,46 +648,10 @@ void Display_Character(unsigned char value,unsigned char pos)
      //end
     }
 }
-
-void SetTime(void)
-{
-    /*Edit the below parameters to set a proper time*/
-    /*Press SW0 on SAM L22 to set the the time*/
-if (SWITCH_Get() == SWITCH_STATE_PRESSED)
-     { 
-           //5-12-2021 15:38:00 Sunday
-    sys_time.tm_hour = 16;      /* hour [0,23] */
-    sys_time.tm_sec = 00;       /* seconds [0,61] */
-    sys_time.tm_min = 38;       /* minutes [0,59] */
-    sys_time.tm_mon = 8;        /* month of year [0,11] */
-    sys_time.tm_year = 123;     /* years since 1900 */
-    sys_time.tm_mday = 5;      /* day of month [1,31] */
-    sys_time.tm_wday = 0;       /* day of week [0,6] (Sunday = 0) */
-                                /* tm_yday - day of year [0,365] */
-                                /* tm_isdst - daylight savings flag */
-    
-    
-    RTC_RTCCTimeSet(&sys_time);
-     }
-}
-
 void APP_Tasks(void)
 {
-     APP_Tasks_SD_FS ( );
-     APP_Tasks_ADC();
-     if(PrevTemp !=CurrentTemp)
-     {
-     APP_TASKS_DISPLAY_TEMP(CurrentTemp);
-     PrevTemp=CurrentTemp;
-     }
-     if(Prevphoto_current != light_intensity)
-     {
-     APP_TASKS_DISPLAY_LSOUT(light_intensity);
-     Prevphoto_current = light_intensity;
-     }
-     
-     APP_Tasks_USB ( );
-     
-     /*Edit this function to with proper time to be Set and Press SW0 */
-     SetTime();
+    APP_Tasks_SD_FS ();
+    APP_Tasks_ADC();
+    APP_TASKS_DISPLAY_SLCD();
+    APP_Tasks_USB ();
 }

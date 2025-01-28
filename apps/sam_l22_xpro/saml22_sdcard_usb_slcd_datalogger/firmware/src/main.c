@@ -77,12 +77,34 @@
 #include <stdlib.h>                     // Defines EXIT_FAILURE
 #include "definitions.h"                // SYS function prototypes
 #include "app.h"
+#define RX_BUFFER_SIZE       5
+void APP_ReadCallback(uintptr_t context);
+static void EIC_User_Handler(uintptr_t context);
+extern volatile bool LoggedDataRead;
+volatile bool timeInputRead =0;
+extern APP_DATA appData;
+bool errorStatus = false;
+bool readStatus = false;
+char receiveBuffer[1] = {};
 
 // *****************************************************************************
 // *****************************************************************************
 // Section: Main Entry Point
 // *****************************************************************************
 // *****************************************************************************
+static void EIC_User_Handler(uintptr_t context)
+{
+    LoggedDataRead=!LoggedDataRead;
+    
+    (LoggedDataRead == (bool)1)? (appData.state= APP_USB_MSD_READ): (appData.state = APP_START) ;
+}
+
+void APP_ReadCallback(uintptr_t context)
+{
+    timeInputRead= !timeInputRead;
+   (timeInputRead == (bool)1)? (appData.state= APP_TIME_INPUT): (appData.state = APP_TIME_SET) ;
+    
+}
 
 int main ( void )
 {
@@ -91,7 +113,10 @@ int main ( void )
     APP_Initialize();
     ADC_Enable(); 
     DRV_SLCD_Initialize();
-    APP_SLCD_Initialize ();       
+    APP_SLCD_Initialize ();     
+    EIC_CallbackRegister(EIC_PIN_9,EIC_User_Handler, 0);
+    SERCOM4_USART_ReadCallbackRegister(APP_ReadCallback, 0);
+    SERCOM4_USART_Read(&receiveBuffer[0], sizeof(receiveBuffer));
     while ( true )
     {
         /* Maintain state machines of all polled MPLAB Harmony modules. */

@@ -2,7 +2,7 @@ Pin Number,Pin ID,Custom Name,Function,Mode, Direction,Latch,Pull Up,Pull Down,D
 1,PA00,,Available,,,,,,NORMAL
 2,PA01,,Available,,,,,,NORMAL
 3,PC00,,Available,,,,,,NORMAL
-4,PC01,SWITCH,SWITCH_AL,Digital,In,n/a,Yes,No,NORMAL
+4,PC01,,EIC_EXTINT9,Digital,In,n/a,Yes,No,NORMAL
 5,PC02,,Available,,,,,,NORMAL
 6,PC03,,Available,,,,,,NORMAL
 7,PA02,LS_ADC,AC_AIN0,Analog,High Impedance,n/a,,,NORMAL

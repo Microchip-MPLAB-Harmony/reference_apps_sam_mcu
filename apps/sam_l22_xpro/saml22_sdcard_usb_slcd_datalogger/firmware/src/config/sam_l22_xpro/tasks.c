@@ -74,14 +74,14 @@ void SYS_Tasks ( void )
 {
     /* Maintain system services */
     
-SYS_FS_Tasks();
+    SYS_FS_Tasks();
 
 
 
     /* Maintain Device Drivers */
     DRV_SDSPI_Tasks(sysObj.drvSDSPI0);
 
-DRV_SLCD_Update();
+    DRV_SLCD_Update();
 
 
 

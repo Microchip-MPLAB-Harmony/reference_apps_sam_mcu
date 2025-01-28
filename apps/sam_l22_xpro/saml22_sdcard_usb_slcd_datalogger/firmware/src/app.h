@@ -124,7 +124,13 @@ typedef enum
     APP_IDLE,
 
     /* An app error has occurred */
-    APP_ERROR
+    APP_ERROR,
+            
+    APP_USB_MSD_READ,
+            
+    APP_TIME_INPUT,
+            
+    APP_TIME_SET,
 
 } APP_STATES;
 
@@ -255,13 +261,16 @@ void APP_Tasks(void);
 void APP_Tasks_SD_FS(void);
 void APP_Tasks_USB(void);
 void APP_Tasks_ADC(void);
-void APP_TASKS_DISPLAY_TEMP(unsigned char);
-void APP_TASKS_DISPLAY_LSOUT(uint32_t );
-void Display_Character(unsigned char,unsigned char);
+void APP_TASKS_DISPLAY_TEMP(unsigned char temperature);
+void APP_TASKS_DISPLAY_LSOUT(uint32_t photo_current);
+void Display_Character(unsigned char value,unsigned char pos);
 void SetTime(void);
-extern unsigned char CurrentTemp,PrevTemp;
+extern unsigned char CurrentTemp;
+extern unsigned char PrevTemp;
 extern unsigned char TempUpdateFlag;
-extern uint32_t Prevphoto_current,photo_current,light_intensity;
+extern uint32_t Prevphoto_current;
+extern uint32_t photo_current;
+extern uint32_t light_intensity;
 #endif
 
 //DOM-IGNORE-BEGIN
