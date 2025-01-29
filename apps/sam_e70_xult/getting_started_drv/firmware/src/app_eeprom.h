@@ -61,6 +61,7 @@
 #include "driver/i2c/drv_i2c.h"
 #include "driver/usart/drv_usart.h"
 #include "peripheral/usart/plib_usart1.h"
+#include "definitions.h"
 
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility

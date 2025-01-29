@@ -64,6 +64,7 @@
 #include "peripheral/usart/plib_usart1.h"
 #include "peripheral/pio/plib_pio.h"
 #include "app_eeprom.h"
+#include "definitions.h"
 
 
 // DOM-IGNORE-BEGIN
