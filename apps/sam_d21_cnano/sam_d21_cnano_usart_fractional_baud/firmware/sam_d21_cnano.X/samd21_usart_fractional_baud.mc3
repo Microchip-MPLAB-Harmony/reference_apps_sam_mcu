@@ -31,7 +31,7 @@
       </entry>
    </usedClasses>
    <usedLibraries class="java.util.ArrayList">
-      <ILibraryFile class="com.microchip.mcc.core.library.BaseLibraryFile" libraryClass="com.microchip.mcc.harmony.Harmony3Library" version="1.5.3"/>
+      <ILibraryFile class="com.microchip.mcc.core.library.BaseLibraryFile" libraryClass="com.microchip.mcc.harmony.Harmony3Library" version="1.5.4"/>
    </usedLibraries>
    <tokenMap class="java.util.TreeMap">
       <entry>
@@ -2838,7 +2838,7 @@
       </entry>
       <entry>
          <file>..\src\config\sam_d21_cnano\definitions.h</file>
-         <hash>e1a70ec30f975f9ccd9aac6b94247371bbf0af1a6214587cc6ac0c6841192ff9</hash>
+         <hash>23b7883152fa3f72b5e9a1e37f90d38a4a33e26d09e4b7c6829142e59f6c5b91</hash>
       </entry>
       <entry>
          <file>..\src\config\sam_d21_cnano\device.h</file>
@@ -2854,11 +2854,11 @@
       </entry>
       <entry>
          <file>..\src\config\sam_d21_cnano\exceptions.c</file>
-         <hash>5efbe5a64a17c496d2f5b177bc9cd66a7f0f80323d9558e220c073a13570a2a7</hash>
+         <hash>42f9da2668e04ccb3473d45b149683a00f80072c6883c7918d6ce93997cd6987</hash>
       </entry>
       <entry>
          <file>..\src\config\sam_d21_cnano\initialization.c</file>
-         <hash>6a2e0e1fecaa7183c125c128e1ef881f623d2ce32c5b38052b25ab0d796ce2f6</hash>
+         <hash>a362950d7b4dfded9da1cc69ec198be7447178fcb381e05dcdd712d783dc5062</hash>
       </entry>
       <entry>
          <file>..\src\config\sam_d21_cnano\interrupts.c</file>
@@ -2902,11 +2902,11 @@
       </entry>
       <entry>
          <file>..\src\config\sam_d21_cnano\peripheral\nvmctrl\plib_nvmctrl.h</file>
-         <hash>c2a445404d1522f927899bdc24120f0f33017c59df47a5f0fed5b66c587f1021</hash>
+         <hash>ddbc301c1d4b1b25b04388149e4da6e67e15176f772fb9c16890d81ec79cfa8d</hash>
       </entry>
       <entry>
          <file>..\src\config\sam_d21_cnano\peripheral\port\plib_port.c</file>
-         <hash>f9042d1ba1abd4dac7e08872f87ad75d5e8558a6cf2b7e61ad6025a9f1bb253b</hash>
+         <hash>d6aa603669d01037be14dcc8ae5b46677f69d37194abe299c218b7741e8f471d</hash>
       </entry>
       <entry>
          <file>..\src\config\sam_d21_cnano\peripheral\port\plib_port.h</file>
@@ -2914,23 +2914,23 @@
       </entry>
       <entry>
          <file>..\src\config\sam_d21_cnano\peripheral\sercom\usart\plib_sercom1_usart.c</file>
-         <hash>fdcb38a0b6b78ac94328763c9fbd56503a30ec5cafed0c0e1d3553f62ef630f3</hash>
+         <hash>dee16e4ce11e8b38893e9b7c55b697f2501170f169aea0ae928218b98e0ff590</hash>
       </entry>
       <entry>
          <file>..\src\config\sam_d21_cnano\peripheral\sercom\usart\plib_sercom1_usart.h</file>
-         <hash>31ecd4d25e40afbba112cd54d25fd2d83a03ac60ec8af86178f70f70392cdf19</hash>
+         <hash>721b767702c85a60634480b2759b12de7c24e3a3d3cbba8e540ed6ca0c083828</hash>
       </entry>
       <entry>
          <file>..\src\config\sam_d21_cnano\peripheral\sercom\usart\plib_sercom5_usart.c</file>
-         <hash>ddb991c3fde82a954b3aea95330ea7f620215ab9faa8bdf4de128284ce4a2922</hash>
+         <hash>91bb2df6cfd30bf0ea4a94a88f6bde54dc40cf8580ff6f07f0875eedfa2b3aa7</hash>
       </entry>
       <entry>
          <file>..\src\config\sam_d21_cnano\peripheral\sercom\usart\plib_sercom5_usart.h</file>
-         <hash>c1b506966a99e2e2c73d0a415917a028ce593d827e324d6035e5d5dbf135115f</hash>
+         <hash>b164e53009f437f7e478c694766f9ed8acad87726f0322f067dfc5e45a1b9a27</hash>
       </entry>
       <entry>
          <file>..\src\config\sam_d21_cnano\peripheral\sercom\usart\plib_sercom_usart_common.h</file>
-         <hash>63c6e89936ba47e8989478a8be0fa40b406361f2f0dcc1b6cfcd801b50a4bf92</hash>
+         <hash>9f02e811b95f0470ca23f3546f3ddf4ccccb385b4d8b8c091899d0d20b0c56e1</hash>
       </entry>
       <entry>
          <file>..\src\config\sam_d21_cnano\pin_configurations.csv</file>
