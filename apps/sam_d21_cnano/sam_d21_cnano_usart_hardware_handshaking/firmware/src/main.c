@@ -57,8 +57,8 @@
 // *****************************************************************************
 // *****************************************************************************
 
-uint8_t rxBuffer;
-uint8_t txBuffer = 0xAA;
+uint8_t receiveBuffer;
+uint8_t transmitBuffer = 0xAA;
 
 volatile bool readStatus_SERCOM_1= false;
 volatile bool writeStatus_SERCOM_1 = false;
@@ -70,7 +70,7 @@ volatile bool writeStatus_SERCOM_5 = false;
 
 void SERCOM_1_WriteCallback(uintptr_t context)
 {
-    SERCOM1_USART_Write(&txBuffer, TX_BUFFER_SIZE);  
+    SERCOM1_USART_Write(&transmitBuffer, TX_BUFFER_SIZE);  
 }
 
 void SERCOM_1_ReadCallback(uintptr_t context)
@@ -89,8 +89,8 @@ int main ( void )
     SERCOM1_USART_ReadCallbackRegister(SERCOM_1_ReadCallback, 0);
     
     // Read request for Extension
-    SERCOM1_USART_Write(&txBuffer, TX_BUFFER_SIZE);
-    SERCOM1_USART_Read(&rxBuffer, RX_BUFFER_SIZE);
+    SERCOM1_USART_Write(&transmitBuffer, TX_BUFFER_SIZE);
+    SERCOM1_USART_Read(&receiveBuffer, RX_BUFFER_SIZE);
         
     while ( true )
     { 
@@ -99,7 +99,7 @@ int main ( void )
         if(readStatus_SERCOM_1 == true)
         {
             readStatus_SERCOM_1 = false;
-            SERCOM1_USART_Read(&rxBuffer, RX_BUFFER_SIZE);
+            SERCOM1_USART_Read(&receiveBuffer, RX_BUFFER_SIZE);
         }
           
         SYS_Tasks ( );
