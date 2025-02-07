@@ -80,9 +80,10 @@
 // *****************************************************************************
 // *****************************************************************************
 /* Following MISRA-C rules are deviated in the below code block */
-/* MISRA C-2012 Rule 11.1 */
-/* MISRA C-2012 Rule 11.3 */
-/* MISRA C-2012 Rule 11.8 */
+/* MISRA C-2012 Rule 7.2 - Deviation record ID - H3_MISRAC_2012_R_7_2_DR_1 */
+/* MISRA C-2012 Rule 11.1 - Deviation record ID - H3_MISRAC_2012_R_11_1_DR_1 */
+/* MISRA C-2012 Rule 11.3 - Deviation record ID - H3_MISRAC_2012_R_11_3_DR_1 */
+/* MISRA C-2012 Rule 11.8 - Deviation record ID - H3_MISRAC_2012_R_11_8_DR_1 */
 // <editor-fold defaultstate="collapsed" desc="DRV_SDSPI Instance 0 Initialization Data">
 
 /* SDSPI Client Objects Pool */
@@ -302,7 +303,7 @@ static DRV_USB_VBUS_LEVEL DRV_USBFSV1_VBUS_Comparator(void)
 {
     DRV_USB_VBUS_LEVEL retVal = DRV_USB_VBUS_LEVEL_INVALID;
     
-    if(true == USB_VBUS_SENSE_Get())
+    if(1U == USB_VBUS_SENSE_Get())
     {
         retVal = DRV_USB_VBUS_LEVEL_VALID;
     }
@@ -310,7 +311,7 @@ static DRV_USB_VBUS_LEVEL DRV_USBFSV1_VBUS_Comparator(void)
 
 }
 
-const DRV_USBFSV1_INIT drvUSBInit =
+static const DRV_USBFSV1_INIT drvUSBInit =
 {
     /* Interrupt Source for USB module */ 
     .interruptSource = USB_IRQn,
@@ -393,6 +394,7 @@ static void STDIO_BufferModeSet(void)
 
     /* Make stdout unbuffered */
     setbuf(stdout, NULL);
+    /* MISRAC 2012 deviation block end */
 }
 
 
@@ -440,7 +442,6 @@ void SYS_Initialize ( void* data )
     TC3_TimerInitialize();
 
 	BSP_Initialize();
-
 
     /* MISRAC 2012 deviation block start */
     /* Following MISRA-C rules deviated in this block  */
