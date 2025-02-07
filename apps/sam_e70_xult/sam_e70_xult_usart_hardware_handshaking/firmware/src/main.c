@@ -63,8 +63,8 @@ volatile bool USART1_readStatus = false;
 volatile bool USART0_writeStatus = false;
 volatile bool USART0_readStatus = false;
 
-uint8_t rxBuffer;
-uint8_t txBuffer = 0xAA;
+uint8_t receiveBuffer;
+uint8_t transmitBuffer = 0xAA;
 
 //USART0 - Extension
 
@@ -106,9 +106,9 @@ int main ( void )
     USART0_ReadCallbackRegister(USART0_ReadEventHandler, (uintptr_t)NULL);
     
     USART_0_RTS_Disable();
-    USART0_Read(&rxBuffer, RX_BUFFER_SIZE);
+    USART0_Read(&receiveBuffer, RX_BUFFER_SIZE);
     
-    USART0_Write(&txBuffer, TX_BUFFER_SIZE);
+    USART0_Write(&transmitBuffer, TX_BUFFER_SIZE);
     
     while ( true )
     {    
@@ -118,7 +118,7 @@ int main ( void )
             USART0_writeStatus = false;
 
             //Transmit received bytes from EDBG
-            USART0_Write(&txBuffer, TX_BUFFER_SIZE);
+            USART0_Write(&transmitBuffer, TX_BUFFER_SIZE);
         }
         
         if(USART0_readStatus == true)
@@ -127,7 +127,7 @@ int main ( void )
             
             //Receive transmitted bytes from EDBG
             USART_0_RTS_Disable();
-            USART0_Read(&rxBuffer, RX_BUFFER_SIZE);
+            USART0_Read(&receiveBuffer, RX_BUFFER_SIZE);
         }
         
         /* Maintain state machines of all polled MPLAB Harmony modules. */
