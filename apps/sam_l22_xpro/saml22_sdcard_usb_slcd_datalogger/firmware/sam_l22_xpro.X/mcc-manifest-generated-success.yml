@@ -2,7 +2,7 @@
 
 manifest_file_version: 1.0.0
 project: sdcard_usb_slcd_datalogger_sam_l22_xpro
-creation_date: 2025-01-28T21:54:25.494+05:30[Asia/Calcutta]
+creation_date: 2025-02-07T19:53:42.219+05:30[Asia/Calcutta]
 operating_system: Windows 10
 mcc_mode: IDE
 mcc_mode_version: v6.20
@@ -23,6 +23,6 @@ modules:
 - {name: filex, type: HARMONY, version: v6.4.0_rel}
 - {name: CMSIS_5, type: HARMONY, version: 5.9.0}
 - {name: usb, type: HARMONY, version: v3.15.0}
-- {name: littlefs, type: HARMONY, version: v2.5.1}
+- {name: littlefs, type: HARMONY, version: v2.10.1}
 - {name: gfx, type: HARMONY, version: v3.15.3}
 - {name: bsp, type: HARMONY, version: v3.21.1}

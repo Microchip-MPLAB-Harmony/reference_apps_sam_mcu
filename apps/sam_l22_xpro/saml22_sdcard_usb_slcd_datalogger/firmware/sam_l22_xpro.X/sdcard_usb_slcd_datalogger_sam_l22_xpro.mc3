@@ -7184,7 +7184,7 @@
       </entry>
       <entry>
          <file>..\src\config\sam_l22_xpro\definitions.h</file>
-         <hash>7b1012a1c00d57c850220ae954f5bce5188f3bc3a18658351a1dea59231b3f85</hash>
+         <hash>c475bfe985e7042e54b4da7c5670a13880ac2aa576b223abbae620dc12b701de</hash>
       </entry>
       <entry>
          <file>..\src\config\sam_l22_xpro\device.h</file>
@@ -7320,7 +7320,7 @@
       </entry>
       <entry>
          <file>..\src\config\sam_l22_xpro\initialization.c</file>
-         <hash>143f194460c1d4c448241ffbbefaa6c3eca4ba4d96c6218443c50e256fe180dc</hash>
+         <hash>5930dfd6497b9031ba6b49b356e8ed94c329eb0eb860c3ad1f5caa8672e442b1</hash>
       </entry>
       <entry>
          <file>..\src\config\sam_l22_xpro\interrupts.c</file>

@@ -472,10 +472,10 @@ void SYS_Initialize ( void* data )
 
     NVMCTRL_Initialize( );
 
-    SUPC_Initialize();
-
 
     ADC_Initialize();
+    SUPC_Initialize();
+
     TC0_TimerInitialize();
 
     RTC_Initialize();
