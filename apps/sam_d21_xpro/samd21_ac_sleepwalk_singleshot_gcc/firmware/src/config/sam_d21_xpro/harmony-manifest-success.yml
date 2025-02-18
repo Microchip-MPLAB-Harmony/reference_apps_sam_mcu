@@ -4,16 +4,19 @@
 
 
 project: samd21_ac_sleepwalk_singleshot_gcc
-creation_date: 2023-09-14T19:06:35.307+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
+creation_date: 2025-02-18T15:10:33.152+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
 operating_system: Windows 10
 mcc_mode: IDE            # [IDE|Standalone|Headless]
-mcc_version: v5.3.7
-mcc_core_version: v5.5.7
-mplabx_version: v6.15        # if MPLAB X plugin only
-harmony_version: v1.3.2
-compiler: ARM (v6.3.1) 
+mcc_version: v5.5.1
+mcc_core_version: v5.7.1
+mplabx_version: v6.20        # if MPLAB X plugin only
+harmony_version: v1.5.4
+compiler: ARM 6.3.1
 
 modules:
-    - {name: "csp", version: "v3.18.0"}
-    - {name: "dev_packs", version: "v3.18.0"}
+    - {name: "csp", version: "v3.20.0"}
+    - {name: "CMSIS_5", version: "5.9.0"}
+
+packs:
+    - {name: "SAMD21_DFP", version: "3.6.144"}
 
