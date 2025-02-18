@@ -128,7 +128,7 @@ void PDEC_HALLStop( void )
 uint8_t PDEC_HALLPatternGet( void )
 {
     PDEC_REGS->PDEC_CTRLBSET = PDEC_CTRLBSET_CMD_READSYNC;
-    while((PDEC_REGS->PDEC_SYNCBUSY)!= 0U)
+    while((PDEC_REGS->PDEC_SYNCBUSY & PDEC_SYNCBUSY_CTRLB_Msk) == PDEC_SYNCBUSY_CTRLB_Msk)
     {
         /* Wait for read Synchronization */
     }
