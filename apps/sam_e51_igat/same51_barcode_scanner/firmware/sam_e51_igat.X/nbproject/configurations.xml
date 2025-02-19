@@ -446,70 +446,18 @@
                 <itemPath>../src/packs/CMSIS/CMSIS/Core/Include/mpu_armv7.h</itemPath>
               </logicalFolder>
             </logicalFolder>
-            <logicalFolder name="DSP" displayName="DSP" projectFiles="true">
-              <logicalFolder name="Include" displayName="Include" projectFiles="true">
-                <logicalFolder name="dsp" displayName="dsp" projectFiles="true">
-                  <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/dsp/statistics_functions.h</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/dsp/basic_math_functions.h</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/dsp/bayes_functions.h</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/dsp/svm_functions_f16.h</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/dsp/support_functions_f16.h</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/dsp/matrix_functions.h</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/dsp/distance_functions.h</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/dsp/bayes_functions_f16.h</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/dsp/statistics_functions_f16.h</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/dsp/basic_math_functions_f16.h</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/dsp/filtering_functions_f16.h</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/dsp/none.h</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/dsp/complex_math_functions.h</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/dsp/transform_functions.h</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/dsp/interpolation_functions_f16.h</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/dsp/interpolation_functions.h</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/dsp/utils.h</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/dsp/transform_functions_f16.h</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/dsp/controller_functions_f16.h</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/dsp/fast_math_functions.h</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/dsp/fast_math_functions_f16.h</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/dsp/svm_defines.h</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/dsp/svm_functions.h</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/dsp/complex_math_functions_f16.h</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/dsp/distance_functions_f16.h</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/dsp/support_functions.h</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/dsp/matrix_functions_f16.h</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/dsp/filtering_functions.h</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/dsp/controller_functions.h</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/dsp/quaternion_math_functions.h</itemPath>
-                </logicalFolder>
-                <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/arm_vec_math_f16.h</itemPath>
-                <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/arm_math_types_f16.h</itemPath>
-                <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/arm_math_memory.h</itemPath>
-                <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/arm_const_structs_f16.h</itemPath>
-                <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/arm_const_structs.h</itemPath>
-                <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/arm_mve_tables.h</itemPath>
-                <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/arm_mve_tables_f16.h</itemPath>
-                <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/arm_common_tables_f16.h</itemPath>
-                <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/arm_common_tables.h</itemPath>
-                <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/arm_vec_math.h</itemPath>
-                <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/arm_math.h</itemPath>
-                <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/arm_math_f16.h</itemPath>
-                <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/arm_helium_utils.h</itemPath>
-                <itemPath>../src/packs/CMSIS/CMSIS/DSP/Include/arm_math_types.h</itemPath>
-              </logicalFolder>
-            </logicalFolder>
-            <logicalFolder name="NN" displayName="NN" projectFiles="true">
-              <logicalFolder name="Include" displayName="Include" projectFiles="true">
-                <itemPath>../src/packs/CMSIS/CMSIS/NN/Include/arm_nn_types.h</itemPath>
-                <itemPath>../src/packs/CMSIS/CMSIS/NN/Include/arm_nnfunctions.h</itemPath>
-                <itemPath>../src/packs/CMSIS/CMSIS/NN/Include/arm_nnsupportfunctions.h</itemPath>
-                <itemPath>../src/packs/CMSIS/CMSIS/NN/Include/arm_nn_tables.h</itemPath>
-              </logicalFolder>
-            </logicalFolder>
           </logicalFolder>
         </logicalFolder>
       </logicalFolder>
       <itemPath>../src/app_cam.h</itemPath>
       <itemPath>../src/arducam.h</itemPath>
       <itemPath>../src/barcode.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="true">
+      <itemPath>Makefile</itemPath>
+      <itemPath>barcode_scanner_sam_e51_igat.mc3</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -873,136 +821,10 @@
           <itemPath>../src/config/sam_e51_igat/tasks.c</itemPath>
         </logicalFolder>
       </logicalFolder>
-      <logicalFolder name="packs" displayName="packs" projectFiles="true">
-        <logicalFolder name="CMSIS" displayName="CMSIS" projectFiles="true">
-          <logicalFolder name="CMSIS" displayName="CMSIS" projectFiles="true">
-            <logicalFolder name="NN" displayName="NN" projectFiles="true">
-              <logicalFolder name="Source" displayName="Source" projectFiles="true">
-                <logicalFolder name="ActivationFunctions"
-                               displayName="ActivationFunctions"
-                               projectFiles="true">
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/ActivationFunctions/arm_relu_q7.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/ActivationFunctions/arm_relu_q15.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/ActivationFunctions/arm_relu6_s8.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/ActivationFunctions/arm_nn_activations_q15.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/ActivationFunctions/arm_nn_activations_q7.c</itemPath>
-                </logicalFolder>
-                <logicalFolder name="BasicMathFunctions"
-                               displayName="BasicMathFunctions"
-                               projectFiles="true">
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/BasicMathFunctions/arm_elementwise_add_s8.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/BasicMathFunctions/arm_elementwise_mul_s8.c</itemPath>
-                </logicalFolder>
-                <logicalFolder name="ConcatenationFunctions"
-                               displayName="ConcatenationFunctions"
-                               projectFiles="true">
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/ConcatenationFunctions/arm_concatenation_s8_z.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/ConcatenationFunctions/arm_concatenation_s8_y.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/ConcatenationFunctions/arm_concatenation_s8_x.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/ConcatenationFunctions/arm_concatenation_s8_w.c</itemPath>
-                </logicalFolder>
-                <logicalFolder name="ConvolutionFunctions"
-                               displayName="ConvolutionFunctions"
-                               projectFiles="true">
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/ConvolutionFunctions/arm_convolve_1_x_n_s8.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/ConvolutionFunctions/arm_depthwise_conv_3x3_s8.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/ConvolutionFunctions/arm_convolve_HWC_q7_RGB.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/ConvolutionFunctions/arm_nn_mat_mult_kernel_s8_s16.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/ConvolutionFunctions/arm_depthwise_separable_conv_HWC_q7_nonsquare.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/ConvolutionFunctions/arm_depthwise_conv_s8_opt.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/ConvolutionFunctions/arm_depthwise_conv_wrapper_s8.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/ConvolutionFunctions/arm_depthwise_conv_s8.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/ConvolutionFunctions/arm_nn_mat_mult_kernel_q7_q15.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/ConvolutionFunctions/arm_nn_mat_mult_kernel_q7_q15_reordered.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/ConvolutionFunctions/arm_convolve_s8.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/ConvolutionFunctions/arm_convolve_HWC_q7_fast_nonsquare.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/ConvolutionFunctions/arm_nn_mat_mult_s8.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/ConvolutionFunctions/arm_convolve_HWC_q15_basic.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/ConvolutionFunctions/arm_convolve_HWC_q15_fast.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/ConvolutionFunctions/arm_convolve_HWC_q15_fast_nonsquare.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/ConvolutionFunctions/arm_convolve_HWC_q7_fast.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/ConvolutionFunctions/arm_depthwise_separable_conv_HWC_q7.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/ConvolutionFunctions/arm_convolve_HWC_q7_basic.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/ConvolutionFunctions/arm_depthwise_conv_u8_basic_ver1.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/ConvolutionFunctions/arm_convolve_wrapper_s8.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/ConvolutionFunctions/arm_convolve_1x1_HWC_q7_fast_nonsquare.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/ConvolutionFunctions/arm_convolve_1x1_s8_fast.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/ConvolutionFunctions/arm_nn_depthwise_conv_s8_core.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/ConvolutionFunctions/arm_convolve_HWC_q7_basic_nonsquare.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/ConvolutionFunctions/arm_nn_mat_mult_kernel_s8_s16_reordered.c</itemPath>
-                </logicalFolder>
-                <logicalFolder name="FullyConnectedFunctions"
-                               displayName="FullyConnectedFunctions"
-                               projectFiles="true">
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/FullyConnectedFunctions/arm_fully_connected_q15.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/FullyConnectedFunctions/arm_fully_connected_mat_q7_vec_q15_opt.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/FullyConnectedFunctions/arm_fully_connected_q15_opt.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/FullyConnectedFunctions/arm_fully_connected_s8.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/FullyConnectedFunctions/arm_fully_connected_mat_q7_vec_q15.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/FullyConnectedFunctions/arm_fully_connected_q7_opt.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/FullyConnectedFunctions/arm_fully_connected_q7.c</itemPath>
-                </logicalFolder>
-                <logicalFolder name="NNSupportFunctions"
-                               displayName="NNSupportFunctions"
-                               projectFiles="true">
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/NNSupportFunctions/arm_q7_to_q15_no_shift.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/NNSupportFunctions/arm_nn_mult_q15.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/NNSupportFunctions/arm_nn_mult_q7.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/NNSupportFunctions/arm_nn_vec_mat_mult_t_s8.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/NNSupportFunctions/arm_nn_mat_mult_nt_t_s8.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/NNSupportFunctions/arm_q7_to_q15_with_offset.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/NNSupportFunctions/arm_q7_to_q15_reordered_no_shift.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/NNSupportFunctions/arm_nn_vec_mat_mult_t_svdf_s8.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/NNSupportFunctions/arm_nn_depthwise_conv_nt_t_padded_s8.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/NNSupportFunctions/arm_nn_mat_mul_core_1x_s8.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/NNSupportFunctions/arm_nn_add_q7.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/NNSupportFunctions/arm_nn_accumulate_q7_to_q15.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/NNSupportFunctions/arm_q7_to_q15_reordered_with_offset.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/NNSupportFunctions/arm_nn_depthwise_conv_nt_t_s8.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/NNSupportFunctions/arm_nntables.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/NNSupportFunctions/arm_nn_mat_mul_core_4x_s8.c</itemPath>
-                </logicalFolder>
-                <logicalFolder name="PoolingFunctions"
-                               displayName="PoolingFunctions"
-                               projectFiles="true">
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/PoolingFunctions/arm_max_pool_s8.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/PoolingFunctions/arm_avgpool_s8.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/PoolingFunctions/arm_pool_q7_HWC.c</itemPath>
-                </logicalFolder>
-                <logicalFolder name="ReshapeFunctions"
-                               displayName="ReshapeFunctions"
-                               projectFiles="true">
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/ReshapeFunctions/arm_reshape_s8.c</itemPath>
-                </logicalFolder>
-                <logicalFolder name="SoftmaxFunctions"
-                               displayName="SoftmaxFunctions"
-                               projectFiles="true">
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/SoftmaxFunctions/arm_softmax_s8.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/SoftmaxFunctions/arm_softmax_q7.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/SoftmaxFunctions/arm_softmax_with_batch_q7.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/SoftmaxFunctions/arm_softmax_u8.c</itemPath>
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/SoftmaxFunctions/arm_softmax_q15.c</itemPath>
-                </logicalFolder>
-                <logicalFolder name="SVDFunctions"
-                               displayName="SVDFunctions"
-                               projectFiles="true">
-                  <itemPath>../src/packs/CMSIS/CMSIS/NN/Source/SVDFunctions/arm_svdf_s8.c</itemPath>
-                </logicalFolder>
-              </logicalFolder>
-            </logicalFolder>
-          </logicalFolder>
-        </logicalFolder>
-      </logicalFolder>
       <itemPath>../src/main.c</itemPath>
       <itemPath>../src/config/sam_e51_igat/pin_configurations.csv</itemPath>
       <itemPath>../src/app_cam.c</itemPath>
       <itemPath>../src/barcode.c</itemPath>
-    </logicalFolder>
-    <logicalFolder name="ExternalFiles"
-                   displayName="Important Files"
-                   projectFiles="false">
-      <itemPath>Makefile</itemPath>
-      <itemPath>barcode_scanner_sam_e51_igat.mc3</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
@@ -1018,7 +840,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>nEdbgTool</platformTool>
         <languageToolchain>XC32</languageToolchain>
-        <languageToolchainVersion>4.30</languageToolchainVersion>
+        <languageToolchainVersion>4.45</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
@@ -1034,7 +856,6 @@
             <linkerLibFileItem>../src/config/sam_e51_igat/touch/lib/qtm_touch_key_cm4_0x0002.X.a</linkerLibFileItem>
             <linkerLibFileItem>../src/config/sam_e51_igat/touch/lib/qtm_surface_cs_cm4_0x0021.X.a</linkerLibFileItem>
             <linkerLibFileItem>../src/config/sam_e51_igat/touch/lib/qtm_acq_same51_0x000f.X.a</linkerLibFileItem>
-            <linkerLibFileItem>../src/packs/CMSIS/CMSIS/DSP/Lib/GCC/libarm_cortexM4lf_math.a</linkerLibFileItem>
           </linkerLibItems>
         </linkerTool>
         <archiverTool>
@@ -1060,6 +881,7 @@
       <C32>
         <property key="additional-warnings" value="true"/>
         <property key="addresss-attribute-use" value="false"/>
+        <property key="appendMe" value=""/>
         <property key="enable-app-io" value="false"/>
         <property key="enable-omit-frame-pointer" value="false"/>
         <property key="enable-symbols" value="true"/>
@@ -1116,6 +938,7 @@
         <property key="additional-options-use-response-files" value="false"/>
         <property key="additional-options-write-sla" value="false"/>
         <property key="allocate-dinit" value="false"/>
+        <property key="appendMe" value=""/>
         <property key="code-dinit" value="false"/>
         <property key="ebase-addr" value=""/>
         <property key="enable-check-sections" value="false"/>
@@ -1155,6 +978,7 @@
       <C32CPP>
         <property key="additional-warnings" value="false"/>
         <property key="addresss-attribute-use" value="false"/>
+        <property key="appendMe" value=""/>
         <property key="check-new" value="false"/>
         <property key="eh-specs" value="true"/>
         <property key="enable-app-io" value="false"/>
@@ -1183,6 +1007,7 @@
         <property key="use-indirect-calls" value="false"/>
       </C32CPP>
       <C32Global>
+        <property key="appendMe" value=""/>
         <property key="common-include-directories" value=""/>
         <property key="gp-relative-option" value=""/>
         <property key="legacy-libc" value="false"/>
@@ -1229,6 +1054,8 @@
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.ranges" value="0-fffff"/>
         <property key="poweroptions.powerenable" value="false"/>
+        <property key="programmerToGoFilePath"
+                  value="D:/DFT/After/same51_barcode_scanner/firmware/sam_e51_igat.X/debug/sam_e51_igat/sam_e51_igat_ptg"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.preservedataflash" value="false"/>
         <property key="programoptions.preservedataflash.ranges"
@@ -1283,6 +1110,8 @@
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.ranges" value="0-fffff"/>
         <property key="poweroptions.powerenable" value="false"/>
+        <property key="programmerToGoFilePath"
+                  value="D:/DFT/After/same51_barcode_scanner/firmware/sam_e51_igat.X/debug/sam_e51_igat/sam_e51_igat_ptg"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.preservedataflash" value="false"/>
         <property key="programoptions.preservedataflash.ranges"

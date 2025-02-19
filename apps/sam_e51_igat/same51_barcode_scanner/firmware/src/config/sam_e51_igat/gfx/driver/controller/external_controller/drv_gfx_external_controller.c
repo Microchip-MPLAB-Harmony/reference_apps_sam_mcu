@@ -75,9 +75,9 @@
 #define DRV_ILI9488_NCSDeassert(intf) GFX_Disp_Intf_PinControl(intf, \
                                     GFX_DISP_INTF_PIN_CS, \
                                     GFX_DISP_INTF_PIN_SET)
-									
 
-									
+
+
 #define PIXEL_BUFFER_BYTES_PER_PIXEL 2
 static uint8_t pixelBuffer[SCREEN_WIDTH * PIXEL_BUFFER_BYTES_PER_PIXEL];
 
@@ -97,11 +97,11 @@ typedef enum
     ERROR,
 } DRV_STATE;
 
-typedef struct ILI9488_DRV 
-{   
+typedef struct ILI9488_DRV
+{
     /* Driver state */
     DRV_STATE state;
-        
+
     /* Port-specific private data */
     void *port_priv;
 
@@ -113,20 +113,20 @@ typedef struct ILI9488_DRV
     } blitParms;
 } ILI9488_DRV;
 
-typedef struct 
+typedef struct
 {
     /* Command */
     uint8_t cmd;
-    
+
     /* Number of command parameters */
     uint8_t parmCount;
-    
+
     /* Command parameters, max of 16 */
     uint8_t parms[16];
-    
+
     /* delay */
     unsigned int delayms;
-    
+
 } ILI9488_CMD_PARAM;
 
 ILI9488_DRV drv;
@@ -212,28 +212,28 @@ static int DRV_ILI9488_Configure(ILI9488_DRV *drvPtr,
     unsigned int i, returnValue;
 
     DRV_ILI9488_NCSAssert(intf);
-    
+
     for (i = 0; i < numVals; i++, initVals++)
     {
         returnValue = GFX_Disp_Intf_WriteCommand(intf, initVals->cmd);
         if (0 != returnValue)
             break;
-        
+
         while (GFX_Disp_Intf_Ready(intf) == false);
-        
+
         if (initVals->parms != NULL &&
             initVals->parmCount > 0)
         {
 
-            returnValue = GFX_Disp_Intf_WriteData(intf, 
+            returnValue = GFX_Disp_Intf_WriteData(intf,
                                                  (uint8_t *) initVals->parms,
                                                  initVals->parmCount);
             if (0 != returnValue)
                 break;
-        
+
             while (GFX_Disp_Intf_Ready(intf) == false);
         }
-        
+
         if (initVals->delayms > 0)
         {
             DRV_ILI9488_DelayMS(initVals->delayms);
@@ -251,18 +251,18 @@ void DRV_ILI9488_Transfer(GFX_Disp_Intf intf)
     uint16_t clr;
     uint16_t* ptr;
     uint8_t parm[4];
-    
+
     switch (drv.state)
     {
         case BLIT_COLUMN_CMD:
         {
-            
+
             DRV_ILI9488_NCSAssert(intf);
-                    
+
             drv.state = BLIT_COLUMN_DATA;
-            
+
             GFX_Disp_Intf_WriteCommand(intf, 0x2a);
-                   
+
             break;
         }
         case BLIT_COLUMN_DATA:
@@ -283,11 +283,11 @@ void DRV_ILI9488_Transfer(GFX_Disp_Intf intf)
         }
         case BLIT_PAGE_CMD:
         {
-                        
+
             drv.state = BLIT_PAGE_DATA;
-            
+
             GFX_Disp_Intf_WriteCommand(intf, 0x2b);
-                   
+
             break;
         }
         case BLIT_PAGE_DATA:
@@ -308,9 +308,9 @@ void DRV_ILI9488_Transfer(GFX_Disp_Intf intf)
         }
         case BLIT_WRITE_CMD:
         {
-            
+
             drv.state = BLIT_WRITE_DATA;
-            
+
             //Start Memory Write
             GFX_Disp_Intf_WriteCommand(intf, 0x2c);
 
@@ -337,20 +337,20 @@ void DRV_ILI9488_Transfer(GFX_Disp_Intf intf)
                                         drv.blitParms.buf->size.width);
                 row++;
             }
-           
+
             if (row >= drv.blitParms.buf->size.height)
             {
                 drv.state = BLIT_DONE;
             }
-            
+
             break;
         }
         case BLIT_DONE:
         {
-            DRV_ILI9488_NCSDeassert(intf); 
+            DRV_ILI9488_NCSDeassert(intf);
             gfxPixelBuffer_SetLocked(drv.blitParms.buf, GFX_FALSE);
             drv.state = IDLE;
-            if (drvBlitCallBack != NULL) 
+            if (drvBlitCallBack != NULL)
             {
                 drvBlitCallBack();
             }
@@ -361,7 +361,7 @@ void DRV_ILI9488_Transfer(GFX_Disp_Intf intf)
         default:
         {
             break;
-        }        
+        }
     }
 }
 
@@ -394,13 +394,13 @@ void DRV_ILI9488_Intf_Callback(GFX_Disp_Intf intf, GFX_DISP_INTF_STATUS status, 
 void DRV_ILI9488_Update(void)
 {
     uint32_t openVal;
-	
+
     if(drv.state == INIT)
     {
 		openVal = GFX_Disp_Intf_Open();
-        
+
         drv.port_priv = (void *)openVal;
-        
+
         if (drv.port_priv == 0)
         {
             drv.state = ERROR;
@@ -435,7 +435,7 @@ gfxResult DRV_ILI9488_BlitBuffer(int32_t x,
     drv.blitParms.y = y;
     drv.blitParms.buf = buf;
     drv.state = BLIT_COLUMN_CMD;
-    
+
     gfxPixelBuffer_SetLocked(buf, GFX_TRUE);
 
     DRV_ILI9488_Transfer((GFX_Disp_Intf) drv.port_priv);
@@ -449,83 +449,83 @@ gfxDriverIOCTLResponse DRV_ILI9488_IOCTL(gfxDriverIOCTLRequest request,
     gfxIOCTLArg_Value* val;
     gfxIOCTLArg_DisplaySize* disp;
     gfxIOCTLArg_LayerRect* rect;
-    
+
     switch(request)
     {
         case GFX_IOCTL_FRAME_END:
         {
             return GFX_IOCTL_OK;
-        }	
+        }
         case GFX_IOCTL_GET_COLOR_MODE:
         {
             val = (gfxIOCTLArg_Value*)arg;
-            
+
             val->value.v_colormode = PIXEL_BUFFER_COLOR_MODE;
-            
+
             return GFX_IOCTL_OK;
         }
         case GFX_IOCTL_GET_BUFFER_COUNT:
         {
             val = (gfxIOCTLArg_Value*)arg;
-            
+
             val->value.v_uint = 1;
-            
+
             return GFX_IOCTL_OK;
         }
         case GFX_IOCTL_GET_DISPLAY_SIZE:
         {
-            disp = (gfxIOCTLArg_DisplaySize*)arg;            
-            
+            disp = (gfxIOCTLArg_DisplaySize*)arg;
+
             disp->width = DISPLAY_WIDTH;
             disp->height = DISPLAY_HEIGHT;
-            
+
             return GFX_IOCTL_OK;
         }
         case GFX_IOCTL_GET_LAYER_COUNT:
         {
             val = (gfxIOCTLArg_Value*)arg;
-            
+
             val->value.v_uint = 1;
-            
+
             return GFX_IOCTL_OK;
         }
         case GFX_IOCTL_GET_ACTIVE_LAYER:
         {
             val = (gfxIOCTLArg_Value*)arg;
-            
+
             val->value.v_uint = 0;
-            
+
             return GFX_IOCTL_OK;
         }
         case GFX_IOCTL_GET_LAYER_RECT:
         {
             rect = (gfxIOCTLArg_LayerRect*)arg;
-            
-            rect->base.id = 0;
+
+            rect->layer.id = 0;
             rect->x = 0;
             rect->y = 0;
             rect->width = DISPLAY_WIDTH;
             rect->height = DISPLAY_HEIGHT;
-            
+
             return GFX_IOCTL_OK;
         }
         case GFX_IOCTL_GET_VSYNC_COUNT:
         {
             val = (gfxIOCTLArg_Value*)arg;
-            
+
             val->value.v_uint = swapCount;
-            
+
             return GFX_IOCTL_OK;
         }
         case GFX_IOCTL_GET_STATUS:
         {
             val = (gfxIOCTLArg_Value*)arg;
-            
+
             if (drv.state == IDLE)
                 val->value.v_uint = 0;
             else
                 val->value.v_uint = 1;
-            
+
             return GFX_IOCTL_OK;
         }
         case GFX_IOCTL_SET_BLIT_CALLBACK:
@@ -534,13 +534,13 @@ gfxDriverIOCTLResponse DRV_ILI9488_IOCTL(gfxDriverIOCTLRequest request,
             drvBlitCallBack = (gfxBlitCallBack)val->value.v_pointer;
 
             return GFX_IOCTL_OK;
-        }		
+        }
         default:
         {
 		    break;
 		}
     }
-    
+
     return GFX_IOCTL_UNSUPPORTED;
 }
 

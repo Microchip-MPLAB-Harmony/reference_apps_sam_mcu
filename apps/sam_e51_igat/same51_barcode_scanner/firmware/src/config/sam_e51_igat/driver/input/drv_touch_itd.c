@@ -78,18 +78,18 @@ extern volatile uint8_t measurement_done_touch;
 
 //Wrapper function that returns true if there is an active touch input
 static inline bool drv_touch_itd_get_surface_active_status(unsigned int id)
-{
-    return qtm_surface_cs_control1.qtm_surface_contact_data[id].qt_surface_status & TOUCH_ACTIVE;
+{ 
+    return (get_surface_status() & TOUCH_ACTIVE);
 }
 
 static inline uint8_t drv_touch_itd_get_surface_data_x_value(unsigned int id)
 {
-    return qtm_surface_cs_control1.qtm_surface_contact_data[id].h_position;
+        return get_surface_position(HOR_POS);
 }
 
 static inline uint8_t drv_touch_itd_get_surface_data_y_value(unsigned int id)
 {
-    return (MAX_POS_VALUE - qtm_surface_cs_control1.qtm_surface_contact_data[id].v_position);
+        return (MAX_POS_VALUE - get_surface_position(VER_POS));
 }
 
 
