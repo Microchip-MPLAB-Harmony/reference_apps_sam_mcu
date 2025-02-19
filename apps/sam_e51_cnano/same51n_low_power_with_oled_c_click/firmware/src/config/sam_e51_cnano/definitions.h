@@ -64,8 +64,8 @@
 #include "peripheral/sercom/usart/plib_sercom5_usart.h"
 #include "peripheral/supc/plib_supc.h"
 #include "peripheral/eic/plib_eic.h"
-#include "peripheral/rtc/plib_rtc.h"
 #include "peripheral/tc/plib_tc0.h"
+#include "peripheral/rtc/plib_rtc.h"
 #include "system/time/sys_time.h"
 #include "system/input/sys_input.h"
 #include "peripheral/adc/plib_adc0.h"
@@ -90,13 +90,13 @@ extern "C" {
 // DOM-IGNORE-END
 
 /* Device Information */
-#define DEVICE_NAME			 "ATSAME51J20A"
-#define DEVICE_ARCH			 "CORTEX-M4"
-#define DEVICE_FAMILY		 "SAME"
-#define DEVICE_SERIES		 "SAME51"
+#define DEVICE_NAME          "ATSAME51J20A"
+#define DEVICE_ARCH          "CORTEX-M4"
+#define DEVICE_FAMILY        "SAME"
+#define DEVICE_SERIES        "SAME51"
 
 /* CPU clock frequency */
-#define CPU_CLOCK_FREQUENCY 120000000
+#define CPU_CLOCK_FREQUENCY 120000000U
 
 // *****************************************************************************
 // *****************************************************************************
