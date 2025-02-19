@@ -57,12 +57,12 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "peripheral/usart/plib_usart1.h"
-#include "driver/i2c/drv_i2c.h"
 #include "system/int/sys_int.h"
 #include "system/cache/sys_cache.h"
 #include "system/dma/sys_dma.h"
 #include "osal/osal.h"
 #include "system/debug/sys_debug.h"
+#include "driver/i2c/drv_i2c.h"
 #include "app_sensor_thread.h"
 #include "app_eeprom_thread.h"
 #include "app_user_input_thread.h"
@@ -78,13 +78,13 @@ extern "C" {
 // DOM-IGNORE-END
 
 /* Device Information */
-#define DEVICE_NAME			 "ATSAME70Q21B"
-#define DEVICE_ARCH			 "CORTEX-M7"
-#define DEVICE_FAMILY		 "SAME"
-#define DEVICE_SERIES		 "SAME70"
+#define DEVICE_NAME          "ATSAME70Q21B"
+#define DEVICE_ARCH          "CORTEX-M7"
+#define DEVICE_FAMILY        "SAME"
+#define DEVICE_SERIES        "SAME70"
 
 /* CPU clock frequency */
-#define CPU_CLOCK_FREQUENCY 300000000
+#define CPU_CLOCK_FREQUENCY 300000000U
 
 // *****************************************************************************
 // *****************************************************************************
