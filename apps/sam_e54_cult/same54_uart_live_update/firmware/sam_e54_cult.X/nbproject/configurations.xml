@@ -191,6 +191,13 @@
       <itemPath>../src/app.h</itemPath>
       <itemPath>../src/app_live_update.h</itemPath>
     </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="true">
+      <itemPath>Makefile</itemPath>
+      <itemPath>../src/config/sam_e54_cult/harmony-manifest-success.yml</itemPath>
+      <itemPath>uart_live_update_sam_e54_cult.mc3</itemPath>
+    </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
                    projectFiles="true">
@@ -257,13 +264,6 @@
       <itemPath>../src/app_live_update.c</itemPath>
       <itemPath>../src/config/sam_e54_cult/pin_configurations.csv</itemPath>
     </logicalFolder>
-    <logicalFolder name="ExternalFiles"
-                   displayName="Important Files"
-                   projectFiles="false">
-      <itemPath>Makefile</itemPath>
-      <itemPath>../src/config/sam_e54_cult/harmony-manifest-success.yml</itemPath>
-      <itemPath>uart_live_update_sam_e54_cult.mc3</itemPath>
-    </logicalFolder>
   </logicalFolder>
   <sourceRootList>
     <Elem>../src</Elem>
@@ -278,12 +278,12 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>noID</platformTool>
         <languageToolchain>XC32</languageToolchain>
-        <languageToolchainVersion>4.30</languageToolchainVersion>
+        <languageToolchainVersion>4.45</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
+        <pack name="SAME54_DFP" vendor="Microchip" version="3.9.244"/>
         <pack name="CMSIS" vendor="ARM" version="5.8.0"/>
-        <pack name="SAME54_DFP" vendor="Microchip" version="3.8.234"/>
       </packs>
       <ScriptingSettings>
       </ScriptingSettings>
