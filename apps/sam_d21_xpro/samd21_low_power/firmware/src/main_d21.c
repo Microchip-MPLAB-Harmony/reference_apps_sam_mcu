@@ -271,6 +271,7 @@ int main ( void )
             }
             else
             {
+                WAKEUP_TEST_Toggle();
                 printf ("\n\n\n\rSW0 Pressed, Wake-up from sleep mode......");
                 sleepMode = ((sleepMode == IDLE_SLEEP_MODE) ? STANDBY_SLEEP_MODE : IDLE_SLEEP_MODE);
             }
