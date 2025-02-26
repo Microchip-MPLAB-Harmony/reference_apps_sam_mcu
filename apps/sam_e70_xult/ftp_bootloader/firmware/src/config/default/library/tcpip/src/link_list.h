@@ -55,18 +55,18 @@ Microchip or any third party.
 
 typedef struct _TAG_SGL_LIST_NODE
 {
-	struct _TAG_SGL_LIST_NODE*		next;		// next node in list
+    struct _TAG_SGL_LIST_NODE*      next;       // next node in list
     void*                           data[];     // generic payload    
-}SGL_LIST_NODE;	// generic linked list node definition
+}SGL_LIST_NODE; // generic linked list node definition
 
 
 typedef struct
 {
-	SGL_LIST_NODE*	head;	// list head
-	SGL_LIST_NODE*	tail;
+    SGL_LIST_NODE*  head;   // list head
+    SGL_LIST_NODE*  tail;
     int             nNodes; // number of nodes in the list
 
-}SINGLE_LIST;	// single linked list
+}SINGLE_LIST;   // single linked list
 
 
 /////  single linked lists manipulation ///////////
@@ -93,8 +93,13 @@ void  TCPIP_Helper_SingleListTailAdd(SINGLE_LIST* pL, SGL_LIST_NODE* pN);
 
 
 // insertion in the middle, not head or tail
+// Note: no verification is made for 'after'. It should be a valid list node!
 void  TCPIP_Helper_SingleListMidAdd(SINGLE_LIST* pL, SGL_LIST_NODE* pN, SGL_LIST_NODE* after);
 
+// insertion at head, at tail or in the middle
+// If after == NULL, it will insert at head
+// Note: no verification is made for 'after'. It should be a valid list node!
+void    TCPIP_Helper_SingleListAdd(SINGLE_LIST* pL, SGL_LIST_NODE* pN, SGL_LIST_NODE* after);
 
 // removes the head node
 SGL_LIST_NODE*  TCPIP_Helper_SingleListHeadRemove(SINGLE_LIST* pL);
@@ -117,7 +122,7 @@ void  TCPIP_Helper_SingleListAppend(SINGLE_LIST* pDstL, SINGLE_LIST* pAList);
 // no memory de-allocation is performed, just removes the nodes from the list
 static __inline__ void __attribute__((always_inline)) TCPIP_Helper_SingleListRemoveAll(SINGLE_LIST* pL)
 {
-	while((TCPIP_Helper_SingleListHeadRemove(pL)));
+    while((TCPIP_Helper_SingleListHeadRemove(pL)));
 }
 
 // returns true if pN belongs to pL; false otherwise
@@ -158,8 +163,14 @@ void  TCPIP_Helper_ProtectedSingleListTailAdd(PROTECTED_SINGLE_LIST* pL, SGL_LIS
 
 
 // insertion in the middle, not head or tail
+// Note: no verification is made for 'after'. It should be a valid list node!
 void  TCPIP_Helper_ProtectedSingleListMidAdd(PROTECTED_SINGLE_LIST* pL, SGL_LIST_NODE* pN, SGL_LIST_NODE* after);
 
+// insertion at head, at tail or in the middle
+// If after == NULL, it will insert at head
+//
+// Note: no verification is made for 'after'. It should be a valid list node!
+void    TCPIP_Helper_ProtectedSingleListAdd(PROTECTED_SINGLE_LIST* pL, SGL_LIST_NODE* pN, SGL_LIST_NODE* after);
 
 // removes the head node
 SGL_LIST_NODE*  TCPIP_Helper_ProtectedSingleListHeadRemove(PROTECTED_SINGLE_LIST* pL);
@@ -199,18 +210,18 @@ bool TCPIP_Helper_ProtectedSingleListUnlock(PROTECTED_SINGLE_LIST* pL);
 
 typedef struct _TAG_DBL_LIST_NODE
 {
-	struct _TAG_DBL_LIST_NODE*		next;		// next node in list
-	struct _TAG_DBL_LIST_NODE*		prev;		// prev node in list
+    struct _TAG_DBL_LIST_NODE*      next;       // next node in list
+    struct _TAG_DBL_LIST_NODE*      prev;       // prev node in list
     void*                           data[];     // generic payload    
-}DBL_LIST_NODE;	// generic linked list node definition
+}DBL_LIST_NODE; // generic linked list node definition
 
 
 typedef struct
 {
-	DBL_LIST_NODE*	head;	// list head
-	DBL_LIST_NODE*	tail;   // list tail;
+    DBL_LIST_NODE*  head;   // list head
+    DBL_LIST_NODE*  tail;   // list tail;
     int             nNodes; // number of nodes in the list 
-}DOUBLE_LIST;	// double linked list
+}DOUBLE_LIST;   // double linked list
 
 
 void  TCPIP_Helper_DoubleListInitialize(DOUBLE_LIST* pL);
@@ -231,7 +242,13 @@ void  TCPIP_Helper_DoubleListHeadAdd(DOUBLE_LIST* pL, DBL_LIST_NODE* pN);
 void  TCPIP_Helper_DoubleListTailAdd(DOUBLE_LIST* pL, DBL_LIST_NODE* pN);
 
 // add node pN in the middle, after existing node "after"
+// Note: no verification is made for 'after'. It should be a valid list node!
 void  TCPIP_Helper_DoubleListMidAdd(DOUBLE_LIST* pL, DBL_LIST_NODE* pN, DBL_LIST_NODE* after);
+
+// insertion at head, at tail or in the middle
+// If after == NULL, it will insert at head
+// Note: no verification is made for 'after'. It should be a valid list node!
+void  TCPIP_Helper_DoubleListAdd(DOUBLE_LIST* pL, DBL_LIST_NODE* pN, DBL_LIST_NODE* after);
 
 DBL_LIST_NODE*  TCPIP_Helper_DoubleListHeadRemove(DOUBLE_LIST* pL);
 
@@ -258,7 +275,7 @@ typedef struct
     DOUBLE_LIST list;
     OSAL_SEM_HANDLE_TYPE semaphore;
     bool semValid;
-}PROTECTED_DOUBLE_LIST;	// double linked list
+}PROTECTED_DOUBLE_LIST; // double linked list
 
 
 // creates an empty double linked list and associated semaphore
@@ -285,7 +302,13 @@ void  TCPIP_Helper_ProtectedDoubleListHeadAdd(PROTECTED_DOUBLE_LIST* pL, DBL_LIS
 void  TCPIP_Helper_ProtectedDoubleListTailAdd(PROTECTED_DOUBLE_LIST* pL, DBL_LIST_NODE* pN);
 
 // add node pN in the middle, after existing node "after"
+// Note: no verification is made for 'after'. It should be a valid list node!
 void  TCPIP_Helper_ProtectedDoubleListMidAdd(PROTECTED_DOUBLE_LIST* pL, DBL_LIST_NODE* pN, DBL_LIST_NODE* after);
+
+// insertion at head, at tail or in the middle
+// If after == NULL, it will insert at head
+// Note: no verification is made for 'after'. It should be a valid list node!
+void  TCPIP_Helper_ProtectedDoubleListAdd(PROTECTED_DOUBLE_LIST* pL, DBL_LIST_NODE* pN, DBL_LIST_NODE* after);
 
 DBL_LIST_NODE*  TCPIP_Helper_ProtectedDoubleListHeadRemove(PROTECTED_DOUBLE_LIST* pL);
 

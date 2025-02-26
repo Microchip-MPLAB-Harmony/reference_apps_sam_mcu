@@ -412,7 +412,7 @@ void APP_Tasks ( void )
             {
                 /* Download application binary from server */
                 appData.state = APP_DOWNLOAD_BIN;
-                SYS_CONSOLE_MESSAGE("Use ftpc get command to download binary\r\nEg: ftpc get -a -a test.bin \r\n");
+                SYS_CONSOLE_MESSAGE("Use ftpc get command to download binary\r\nEg: ftpc get -a test.bin \r\n");
                 SYS_CONSOLE_MESSAGE("Enter command 'boot' after receiving 'Command Success' message\r\n");
             }
 

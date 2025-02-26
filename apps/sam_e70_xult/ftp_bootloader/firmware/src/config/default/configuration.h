@@ -324,6 +324,9 @@ extern "C" {
 
 #define TCPIP_IPV6_G3_PLC_SUPPORT                       false
 
+#define TCPIP_IPV6_RANDOM_INTERFACE_ID_ENABLE           false
+
+
 
 /* MPLAB Harmony Net Presentation Layer Definitions*/
 #define NET_PRES_NUM_INSTANCE 1
@@ -491,7 +494,7 @@ extern "C" {
                                                         TCPIP_ETH_OPEN_100 |\
                                                         TCPIP_ETH_OPEN_10 |\
                                                         TCPIP_ETH_OPEN_MDIX_AUTO |\
-                                                        TCPIP_ETH_OPEN_RMII |\
+                                                            TCPIP_ETH_OPEN_RMII |\
                                                         0
 
 #define TCPIP_GMAC_MODULE_ID                       GMAC_BASE_ADDRESS
@@ -585,6 +588,7 @@ extern "C" {
 #define SINGLE_THREADED
 #define NO_SIG_WRAPPER
 #define NO_ERROR_STRINGS
+#define WOLFSSL_MAX_ERROR_SZ 38 // Fix Mandatory Misra 21.18 caused by removing error strings with defining NO_ERROR_STRINGS
 #define NO_WOLFSSL_MEMORY
 // ---------- FUNCTIONAL CONFIGURATION END ----------
 
