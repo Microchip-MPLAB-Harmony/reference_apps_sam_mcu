@@ -99,10 +99,10 @@ void ADC1_Initialize( void )
     ADC1_REGS->ADC_CTRLA = ADC_CTRLA_PRESCALER_DIV2;
 
     /* Sampling length */
-    ADC1_REGS->ADC_SAMPCTRL = ADC_SAMPCTRL_SAMPLEN(0U);
+    ADC1_REGS->ADC_SAMPCTRL = ADC_SAMPCTRL_SAMPLEN(0U) | ADC_SAMPCTRL_OFFCOMP_Msk;
 
     /* reference */
-    ADC1_REGS->ADC_REFCTRL = ADC_REFCTRL_REFSEL_INTVCC1;
+    ADC1_REGS->ADC_REFCTRL = ADC_REFCTRL_REFSEL_INTVCC1 | ADC_REFCTRL_REFCOMP_Msk;
 
 
     /* positive and negative input pins */
@@ -134,7 +134,7 @@ void ADC1_Initialize( void )
 void ADC1_Enable( void )
 {
     ADC1_REGS->ADC_CTRLA |= ADC_CTRLA_ENABLE_Msk;
-    while(ADC1_REGS->ADC_SYNCBUSY != 0U)
+    while((ADC1_REGS->ADC_SYNCBUSY & ADC_SYNCBUSY_ENABLE_Msk) == ADC_SYNCBUSY_ENABLE_Msk)
     {
         /* Wait for Synchronization */
     }
@@ -144,7 +144,7 @@ void ADC1_Enable( void )
 void ADC1_Disable( void )
 {
     ADC1_REGS->ADC_CTRLA &=(uint16_t) ~ADC_CTRLA_ENABLE_Msk;
-    while(ADC1_REGS->ADC_SYNCBUSY != 0U)
+    while((ADC1_REGS->ADC_SYNCBUSY & ADC_SYNCBUSY_ENABLE_Msk) == ADC_SYNCBUSY_ENABLE_Msk)
     {
         /* Wait for Synchronization */
     }
@@ -183,17 +183,21 @@ void ADC1_ComparisonWindowSet(uint16_t low_threshold, uint16_t high_threshold)
 {
     ADC1_REGS->ADC_WINLT = low_threshold;
     ADC1_REGS->ADC_WINUT = high_threshold;
-    while(ADC1_REGS->ADC_SYNCBUSY != 0U)
+    while((ADC1_REGS->ADC_SYNCBUSY & ADC_SYNCBUSY_WINLT_Msk) == ADC_SYNCBUSY_WINLT_Msk)
     {
         /* Wait for Synchronization */
     }
+    while((ADC1_REGS->ADC_SYNCBUSY & ADC_SYNCBUSY_WINUT_Msk) == ADC_SYNCBUSY_WINUT_Msk)
+    {
+        /* Wait for Synchronization */
+    } 
 }
 
 void ADC1_WindowModeSet(ADC_WINMODE mode)
 {
     ADC1_REGS->ADC_CTRLB &= (uint16_t)~ADC_CTRLB_WINMODE_Msk;
     ADC1_REGS->ADC_CTRLB |= (uint16_t)mode << ADC_CTRLB_WINMODE_Pos;
-    while(ADC1_REGS->ADC_SYNCBUSY != 0U)
+    while((ADC1_REGS->ADC_SYNCBUSY & ADC_SYNCBUSY_CTRLB_Msk) == ADC_SYNCBUSY_CTRLB_Msk)
     {
         /* Wait for Synchronization */
     }
@@ -239,8 +243,11 @@ bool ADC1_ConversionStatusGet( void )
 {
     bool status;
     status =  (((ADC1_REGS->ADC_INTFLAG & ADC_INTFLAG_RESRDY_Msk) >> ADC_INTFLAG_RESRDY_Pos) !=0U);
-    /* Clear interrupt flag */
-    ADC1_REGS->ADC_INTFLAG = ADC_INTFLAG_RESRDY_Msk;
+    if (status == true)
+    {
+        /* Clear interrupt flag */
+        ADC1_REGS->ADC_INTFLAG = ADC_INTFLAG_RESRDY_Msk;
+    }
     return status;
 }
 void __attribute__((used)) ADC1_OTHER_InterruptHandler( void )
