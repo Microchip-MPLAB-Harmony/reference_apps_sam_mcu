@@ -65,15 +65,6 @@
 // *****************************************************************************
 // *****************************************************************************
 
-/*** Macros for ARDUCAM_SLAVE_SS pin ***/
-#define ARDUCAM_SLAVE_SS_Set()               (PORT_REGS->GROUP[2].PORT_OUTSET = ((uint32_t)1U << 15U))
-#define ARDUCAM_SLAVE_SS_Clear()             (PORT_REGS->GROUP[2].PORT_OUTCLR = ((uint32_t)1U << 15U))
-#define ARDUCAM_SLAVE_SS_Toggle()            (PORT_REGS->GROUP[2].PORT_OUTTGL = ((uint32_t)1U << 15U))
-#define ARDUCAM_SLAVE_SS_OutputEnable()      (PORT_REGS->GROUP[2].PORT_DIRSET = ((uint32_t)1U << 15U))
-#define ARDUCAM_SLAVE_SS_InputEnable()       (PORT_REGS->GROUP[2].PORT_DIRCLR = ((uint32_t)1U << 15U))
-#define ARDUCAM_SLAVE_SS_Get()               (((PORT_REGS->GROUP[2].PORT_IN >> 15U)) & 0x01U)
-#define ARDUCAM_SLAVE_SS_PIN                  PORT_PIN_PC15
-
 /*** Macros for LED2 pin ***/
 #define LED2_Set()               (PORT_REGS->GROUP[0].PORT_OUTSET = ((uint32_t)1U << 16U))
 #define LED2_Clear()             (PORT_REGS->GROUP[0].PORT_OUTCLR = ((uint32_t)1U << 16U))
@@ -91,6 +82,15 @@
 #define LED1_InputEnable()       (PORT_REGS->GROUP[2].PORT_DIRCLR = ((uint32_t)1U << 21U))
 #define LED1_Get()               (((PORT_REGS->GROUP[2].PORT_IN >> 21U)) & 0x01U)
 #define LED1_PIN                  PORT_PIN_PC21
+
+/*** Macros for ARDUCAM_SLAVE_SS pin ***/
+#define ARDUCAM_SLAVE_SS_Set()               (PORT_REGS->GROUP[1].PORT_OUTSET = ((uint32_t)1U << 28U))
+#define ARDUCAM_SLAVE_SS_Clear()             (PORT_REGS->GROUP[1].PORT_OUTCLR = ((uint32_t)1U << 28U))
+#define ARDUCAM_SLAVE_SS_Toggle()            (PORT_REGS->GROUP[1].PORT_OUTTGL = ((uint32_t)1U << 28U))
+#define ARDUCAM_SLAVE_SS_OutputEnable()      (PORT_REGS->GROUP[1].PORT_DIRSET = ((uint32_t)1U << 28U))
+#define ARDUCAM_SLAVE_SS_InputEnable()       (PORT_REGS->GROUP[1].PORT_DIRCLR = ((uint32_t)1U << 28U))
+#define ARDUCAM_SLAVE_SS_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 28U)) & 0x01U)
+#define ARDUCAM_SLAVE_SS_PIN                  PORT_PIN_PB28
 
 // *****************************************************************************
 /* PORT Group

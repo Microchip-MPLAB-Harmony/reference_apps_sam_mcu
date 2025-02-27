@@ -43,7 +43,7 @@ Pin Number,Pin ID,Custom Name,Function,Mode, Direction,Latch,Pull Up,Pull Down,D
 56,PC12,,Available,,,,,,NORMAL
 57,PC13,,Available,,,,,,NORMAL
 58,PC14,,Available,,,,,,NORMAL
-59,PC15,ARDUCAM_SLAVE_SS,GPIO,Digital,Out,High,,,NORMAL
+59,PC15,,Available,,,,,,NORMAL
 60,PA12,,GMAC_GRX1,Digital,High Impedance,n/a,No,No,NORMAL
 61,PA13,,GMAC_GRX0,Digital,High Impedance,n/a,No,No,NORMAL
 62,PA14,,GMAC_GTXCK,Digital,High Impedance,n/a,No,No,NORMAL
@@ -80,7 +80,7 @@ Pin Number,Pin ID,Custom Name,Function,Mode, Direction,Latch,Pull Up,Pull Down,D
 101,PB25,,SERCOM0_PAD1,Digital,High Impedance,n/a,No,No,NORMAL
 102,PB26,,Available,,,,,,NORMAL
 103,PB27,,Available,,,,,,NORMAL
-104,PB28,,Available,,,,,,NORMAL
+104,PB28,ARDUCAM_SLAVE_SS,GPIO,Digital,In/Out,Low,,,NORMAL
 105,PB29,,Available,,,,,,NORMAL
 108,PC24,,Available,,,,,,NORMAL
 109,PC25,,SERCOM0_PAD3,Digital,High Impedance,n/a,No,No,NORMAL

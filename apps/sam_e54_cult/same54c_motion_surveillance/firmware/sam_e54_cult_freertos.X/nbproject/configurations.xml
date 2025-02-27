@@ -346,6 +346,7 @@
             <itemPath>../src/third_party/rtos/FreeRTOS/Source/include/mpu_prototypes.h</itemPath>
             <itemPath>../src/third_party/rtos/FreeRTOS/Source/include/stream_buffer.h</itemPath>
             <itemPath>../src/third_party/rtos/FreeRTOS/Source/include/message_buffer.h</itemPath>
+            <itemPath>../src/third_party/rtos/FreeRTOS/Source/include/mpu_syscall_numbers.h</itemPath>
           </logicalFolder>
           <logicalFolder name="f2" displayName="portable" projectFiles="true">
             <logicalFolder name="f1" displayName="GCC" projectFiles="true">
@@ -638,6 +639,17 @@
       <itemPath>../src/app_pir_sensor.h</itemPath>
       <itemPath>../src/ov2640_regs.h</itemPath>
       <itemPath>../src/app_tcp_ip.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="true">
+      <logicalFolder name="f2" displayName="wolfcrypt" projectFiles="true">
+        <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/src/misc.c</itemPath>
+        <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/src/evp.c</itemPath>
+      </logicalFolder>
+      <itemPath>Makefile</itemPath>
+      <itemPath>../src/config/sam_e54_cult_freertos/harmony-manifest-success.yml</itemPath>
+      <itemPath>motion_surveillance_sam_e54_cult.mc3</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -988,17 +1000,6 @@
       <itemPath>../src/app_pir_sensor.c</itemPath>
       <itemPath>../src/app_tcp_ip.c</itemPath>
       <itemPath>../src/config/sam_e54_cult_freertos/pin_configurations.csv</itemPath>
-    </logicalFolder>
-    <logicalFolder name="ExternalFiles"
-                   displayName="Important Files"
-                   projectFiles="false">
-      <logicalFolder name="f2" displayName="wolfcrypt" projectFiles="true">
-        <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/src/misc.c</itemPath>
-        <itemPath>../src/third_party/wolfssl/wolfssl/wolfcrypt/src/evp.c</itemPath>
-      </logicalFolder>
-      <itemPath>Makefile</itemPath>
-      <itemPath>../src/config/sam_e54_cult_freertos/harmony-manifest-success.yml</itemPath>
-      <itemPath>motion_surveillance_sam_e54_cult.mc3</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
@@ -1835,6 +1836,8 @@
         <property key="memories.programmemory.ranges" value="0-fffff"/>
         <property key="memories.rww" value="true"/>
         <property key="poweroptions.powerenable" value="false"/>
+        <property key="programmerToGoFilePath"
+                  value="C:/MM/reference_apps/apps/sam_e54_cult/same54c_motion_surveillance/firmware/sam_e54_cult_freertos.X/debug/sam_e54_cult_freertos/sam_e54_cult_freertos_ptg"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.preservedataflash" value="false"/>
         <property key="programoptions.preservedataflash.ranges"

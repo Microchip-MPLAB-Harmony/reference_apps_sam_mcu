@@ -78,9 +78,10 @@
 // *****************************************************************************
 // *****************************************************************************
 /* Following MISRA-C rules are deviated in the below code block */
-/* MISRA C-2012 Rule 11.1 */
-/* MISRA C-2012 Rule 11.3 */
-/* MISRA C-2012 Rule 11.8 */
+/* MISRA C-2012 Rule 7.2 - Deviation record ID - H3_MISRAC_2012_R_7_2_DR_1 */
+/* MISRA C-2012 Rule 11.1 - Deviation record ID - H3_MISRAC_2012_R_11_1_DR_1 */
+/* MISRA C-2012 Rule 11.3 - Deviation record ID - H3_MISRAC_2012_R_11_3_DR_1 */
+/* MISRA C-2012 Rule 11.8 - Deviation record ID - H3_MISRAC_2012_R_11_8_DR_1 */
 // <editor-fold defaultstate="collapsed" desc="DRV_I2C Instance 0 Initialization Data">
 
 /* I2C Client Objects Pool */
@@ -808,10 +809,10 @@ static const SYS_CONSOLE_INIT sysConsole0Init =
 // </editor-fold>
 
 
-const SYS_CMD_INIT sysCmdInit =
+static const SYS_CMD_INIT sysCmdInit =
 {
     .moduleInit = {0},
-    .consoleCmdIOParam = SYS_CMD_SINGLE_CHARACTER_READ_CONSOLE_IO_PARAM,
+    .consoleCmdIOParam = (uint8_t) SYS_CMD_SINGLE_CHARACTER_READ_CONSOLE_IO_PARAM,
 	.consoleIndex = 0,
 };
 
@@ -870,12 +871,11 @@ void SYS_Initialize ( void* data )
 
     SERCOM1_USART_Initialize();
 
-    SERCOM0_SPI_Initialize();
-
     EVSYS_Initialize();
 
-    SERCOM6_I2C_Initialize();
+    SERCOM0_SPI_Initialize();
 
+    SERCOM6_I2C_Initialize();
 
 
     /* MISRAC 2012 deviation block start */
@@ -906,7 +906,7 @@ void SYS_Initialize ( void* data )
      H3_MISRAC_2012_R_11_3_DR_1 & H3_MISRAC_2012_R_11_8_DR_1*/
         sysObj.sysConsole0 = SYS_CONSOLE_Initialize(SYS_CONSOLE_INDEX_0, (SYS_MODULE_INIT *)&sysConsole0Init);
    /* MISRAC 2012 deviation block end */
-    SYS_CMD_Initialize((SYS_MODULE_INIT*)&sysCmdInit);
+    sysObj.sysCommand = (uint32_t) SYS_CMD_Initialize((SYS_MODULE_INIT*)&sysCmdInit);
 
     /* MISRA C-2012 Rule 11.3, 11.8 deviated below. Deviation record ID -  
      H3_MISRAC_2012_R_11_3_DR_1 & H3_MISRAC_2012_R_11_8_DR_1*/
