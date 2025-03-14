@@ -2,12 +2,12 @@
 
 manifest_file_version: 1.0.0
 project: low_power_sam_c21_xpro
-creation_date: 2025-03-14T10:12:12.275+05:30[Asia/Calcutta]
+creation_date: 2025-03-14T15:01:34.435+05:30[Asia/Calcutta]
 operating_system: Windows 10
 mcc_mode: IDE
 mcc_mode_version: v6.20
 device_name: ATSAMC21J18A
-compiler: XC32 4.30
+compiler: XC32 4.45
 mcc_version: 5.5.1
 mcc_core_version: 5.7.1
 content_manager_version: 5.0.1
