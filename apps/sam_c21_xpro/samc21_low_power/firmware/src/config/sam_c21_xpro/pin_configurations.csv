@@ -41,7 +41,7 @@ Pin Number,Pin ID,Custom Name,Function,Mode, Direction,Latch,Pull Up,Pull Down,D
 46,PA25,,Available,,,,,,NORMAL
 49,PB22,,Available,,,,,,NORMAL
 50,PB23,,Available,,,,,,NORMAL
-51,PA27,WAKEUP_TEST,GPIO,Digital,Out,Low,,,NORMAL
+51,PA27,TEST_GPIO,GPIO,Digital,Out,Low,,,NORMAL
 53,PA28,,EIC_EXTINT8,Digital,High Impedance,n/a,Yes,No,NORMAL
 57,PA30,,Available,,,,,,NORMAL
 58,PA31,,Available,,,,,,NORMAL

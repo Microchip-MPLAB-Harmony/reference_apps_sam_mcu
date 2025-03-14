@@ -74,14 +74,14 @@
 #define LED_Get()               (((PORT_REGS->GROUP[0].PORT_IN >> 15U)) & 0x01U)
 #define LED_PIN                  PORT_PIN_PA15
 
-/*** Macros for WAKEUP_TEST pin ***/
-#define WAKEUP_TEST_Set()               (PORT_REGS->GROUP[0].PORT_OUTSET = ((uint32_t)1U << 27U))
-#define WAKEUP_TEST_Clear()             (PORT_REGS->GROUP[0].PORT_OUTCLR = ((uint32_t)1U << 27U))
-#define WAKEUP_TEST_Toggle()            (PORT_REGS->GROUP[0].PORT_OUTTGL = ((uint32_t)1U << 27U))
-#define WAKEUP_TEST_OutputEnable()      (PORT_REGS->GROUP[0].PORT_DIRSET = ((uint32_t)1U << 27U))
-#define WAKEUP_TEST_InputEnable()       (PORT_REGS->GROUP[0].PORT_DIRCLR = ((uint32_t)1U << 27U))
-#define WAKEUP_TEST_Get()               (((PORT_REGS->GROUP[0].PORT_IN >> 27U)) & 0x01U)
-#define WAKEUP_TEST_PIN                  PORT_PIN_PA27
+/*** Macros for TEST_GPIO pin ***/
+#define TEST_GPIO_Set()               (PORT_REGS->GROUP[0].PORT_OUTSET = ((uint32_t)1U << 27U))
+#define TEST_GPIO_Clear()             (PORT_REGS->GROUP[0].PORT_OUTCLR = ((uint32_t)1U << 27U))
+#define TEST_GPIO_Toggle()            (PORT_REGS->GROUP[0].PORT_OUTTGL = ((uint32_t)1U << 27U))
+#define TEST_GPIO_OutputEnable()      (PORT_REGS->GROUP[0].PORT_DIRSET = ((uint32_t)1U << 27U))
+#define TEST_GPIO_InputEnable()       (PORT_REGS->GROUP[0].PORT_DIRCLR = ((uint32_t)1U << 27U))
+#define TEST_GPIO_Get()               (((PORT_REGS->GROUP[0].PORT_IN >> 27U)) & 0x01U)
+#define TEST_GPIO_PIN                  PORT_PIN_PA27
 
 // *****************************************************************************
 /* PORT Group

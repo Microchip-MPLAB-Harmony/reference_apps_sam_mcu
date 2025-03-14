@@ -93,24 +93,24 @@ void ADC1_Initialize( void )
                                       (ADC_CALIB_BIASCOMP((calib_low_word & ADC1_BIASCAL_Msk) >> ADC1_BIASCAL_POS)));
 
     /* Prescaler */
-    ADC1_REGS->ADC_CTRLB = (uint8_t)ADC_CTRLB_PRESCALER_DIV256;
+    ADC1_REGS->ADC_CTRLB = (uint8_t)ADC_CTRLB_PRESCALER_DIV2;
     /* Sampling length */
     ADC1_REGS->ADC_SAMPCTRL = (uint8_t)ADC_SAMPCTRL_SAMPLEN(3UL);
 
     /* Reference */
-    ADC1_REGS->ADC_REFCTRL = (uint8_t)ADC_REFCTRL_REFSEL_INTVCC2;
+    ADC1_REGS->ADC_REFCTRL = (uint8_t)ADC_REFCTRL_REFSEL_INTVCC2 | ADC_REFCTRL_REFCOMP_Msk;
 
     /* Input pin */
     ADC1_REGS->ADC_INPUTCTRL = (uint16_t) ADC_POSINPUT_AIN10;
 
     /* Resolution & Operation Mode */
-    ADC1_REGS->ADC_CTRLC = (uint16_t)(ADC_CTRLC_RESSEL_8BIT | ADC_CTRLC_WINMODE(1UL) );
+    ADC1_REGS->ADC_CTRLC = (uint16_t)(ADC_CTRLC_RESSEL_12BIT | ADC_CTRLC_WINMODE(1UL) );
 
 
     /* Upper threshold for window mode  */
-    ADC1_REGS->ADC_WINUT = (uint16_t)(0);
+    ADC1_REGS->ADC_WINUT = (uint16_t)(3000);
     /* Lower threshold for window mode  */
-    ADC1_REGS->ADC_WINLT = (uint16_t)(150);
+    ADC1_REGS->ADC_WINLT = (uint16_t)(2000);
     /* Clear all interrupt flags */
     ADC1_REGS->ADC_INTFLAG = (uint8_t)ADC_INTFLAG_Msk;
     /* Enable interrupts */
@@ -129,7 +129,7 @@ void ADC1_Initialize( void )
 void ADC1_Enable( void )
 {
     ADC1_REGS->ADC_CTRLA |= (uint8_t)ADC_CTRLA_ENABLE_Msk;
-    while(0U != ADC1_REGS->ADC_SYNCBUSY)
+    while((ADC1_REGS->ADC_SYNCBUSY & ADC_SYNCBUSY_ENABLE_Msk) == ADC_SYNCBUSY_ENABLE_Msk)
     {
         /* Wait for Synchronization */
     }
@@ -139,7 +139,7 @@ void ADC1_Enable( void )
 void ADC1_Disable( void )
 {
     ADC1_REGS->ADC_CTRLA &= (uint8_t)(~ADC_CTRLA_ENABLE_Msk);
-    while(0U != ADC1_REGS->ADC_SYNCBUSY)
+    while((ADC1_REGS->ADC_SYNCBUSY & ADC_SYNCBUSY_ENABLE_Msk) == ADC_SYNCBUSY_ENABLE_Msk)
     {
         /* Wait for Synchronization */
     }
@@ -185,16 +185,20 @@ void ADC1_ComparisonWindowSet(uint16_t low_threshold, uint16_t high_threshold)
 {
     ADC1_REGS->ADC_WINLT = low_threshold;
     ADC1_REGS->ADC_WINUT = high_threshold;
-    while(0U != (ADC1_REGS->ADC_SYNCBUSY))
+    while((ADC1_REGS->ADC_SYNCBUSY & ADC_SYNCBUSY_WINLT_Msk) == ADC_SYNCBUSY_WINLT_Msk)
     {
         /* Wait for Synchronization */
     }
+    while((ADC1_REGS->ADC_SYNCBUSY & ADC_SYNCBUSY_WINUT_Msk) == ADC_SYNCBUSY_WINUT_Msk)
+    {
+        /* Wait for Synchronization */
+    }    
 }
 
 void ADC1_WindowModeSet(ADC_WINMODE mode)
 {
     ADC1_REGS->ADC_CTRLC =  (ADC1_REGS->ADC_CTRLC & (uint16_t)(~ADC_CTRLC_WINMODE_Msk)) | (uint16_t)((uint32_t)mode << ADC_CTRLC_WINMODE_Pos);
-    while(0U != (ADC1_REGS->ADC_SYNCBUSY))
+    while((ADC1_REGS->ADC_SYNCBUSY & ADC_SYNCBUSY_CTRLC_Msk) == ADC_SYNCBUSY_CTRLC_Msk)
     {
         /* Wait for Synchronization */
     }
