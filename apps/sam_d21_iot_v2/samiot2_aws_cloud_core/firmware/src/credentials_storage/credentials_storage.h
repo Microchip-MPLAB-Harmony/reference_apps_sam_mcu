@@ -29,7 +29,7 @@
 
 extern char ssid[MAX_WIFI_CREDENTIALS_LENGTH];
 extern char pass[MAX_WIFI_CREDENTIALS_LENGTH];
-extern char authType[2];
+extern char authType[4];
 
 void CREDENTIALS_STORAGE_clearWifiCredentials(void);
 

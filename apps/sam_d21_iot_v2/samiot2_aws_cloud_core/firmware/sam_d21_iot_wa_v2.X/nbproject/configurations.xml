@@ -396,6 +396,12 @@
       <itemPath>../src/project_config.h</itemPath>
       <itemPath>../src/aws_connect.h</itemPath>
     </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="true">
+      <itemPath>Makefile</itemPath>
+      <itemPath>aws_cloud_iot_core_sam_d21_iot_wa_v2.mc3</itemPath>
+    </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
                    projectFiles="true">
@@ -699,12 +705,6 @@
       <itemPath>../src/cust_def_1_signer.c</itemPath>
       <itemPath>../src/config/samd21_wa_iot_v2/pin_configurations.csv</itemPath>
     </logicalFolder>
-    <logicalFolder name="ExternalFiles"
-                   displayName="Important Files"
-                   projectFiles="false">
-      <itemPath>Makefile</itemPath>
-      <itemPath>aws_cloud_iot_core_sam_d21_iot_wa_v2.mc3</itemPath>
-    </logicalFolder>
   </logicalFolder>
   <sourceRootList>
     <Elem>../../../../10_cloud_connect/10_cloud_connect</Elem>
@@ -720,7 +720,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>nEdbgTool</platformTool>
         <languageToolchain>XC32</languageToolchain>
-        <languageToolchainVersion>4.30</languageToolchainVersion>
+        <languageToolchainVersion>4.45</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>

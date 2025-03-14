@@ -5,7 +5,7 @@
         <Dependency name="core" version="v3.14.1"/>
         <Dependency name="bsp" version="v3.21.1"/>
         <Dependency name="FreeRTOS-Kernel" version="V11.1.0"/>
-        <Dependency name="cryptoauthlib" version="v3.7.7"/>
+        <Dependency name="cryptoauthlib" version="v3.5.1"/>
         <Dependency name="wireless_wifi" version="v3.12.0"/>
         <Dependency name="usb" version="v3.15.0"/>
         <Dependency name="filex" version="v6.4.0_rel"/>

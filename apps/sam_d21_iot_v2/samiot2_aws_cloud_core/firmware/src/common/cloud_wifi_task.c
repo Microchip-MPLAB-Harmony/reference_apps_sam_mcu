@@ -669,7 +669,7 @@ void WiFi_ProvisionCb(uint8_t sectype, uint8_t * SSID, uint8_t * password)
 {
         
     if(ssidReceived == 0){ 
-        sprintf((char*)authType, "%d", sectype);
+        snprintf((char*)authType,sizeof(authType), "%d", sectype);
         debug_printInfo("%s",SSID);			   			   
         strcpy(ssid, (char *)SSID);
         strcpy(pass, (char *)password);

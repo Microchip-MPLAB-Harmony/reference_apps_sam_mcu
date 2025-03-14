@@ -30,7 +30,7 @@
 
 char ssid[MAX_WIFI_CREDENTIALS_LENGTH];
 char pass[MAX_WIFI_CREDENTIALS_LENGTH];
-char authType[2];
+char authType[4];
 
 void CREDENTIALS_STORAGE_clearWifiCredentials(void)
 {
