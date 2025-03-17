@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://www.netbeans.org/ns/project/1">
+    <type>com.microchip.mplab.nbide.embedded.makeproject</type>
+    <configuration>
+        <data xmlns="http://www.netbeans.org/ns/make-project/1">
+            <name>Microwave_sam_d21_cnano</name>
+            <creation-uuid>7adfe907-ec2d-46f6-a8cc-9f320d1f7972</creation-uuid>
+            <make-project-type>0</make-project-type>
+            <sourceEncoding>ISO-8859-1</sourceEncoding>
+            <make-dep-projects/>
+            <sourceRootList>
+                <sourceRootElem>../../../../../../../applications/Microwave</sourceRootElem>
+                <sourceRootElem>../../../../../../../core</sourceRootElem>
+                <sourceRootElem>../../../../../../../external</sourceRootElem>
+                <sourceRootElem>../../../../../..</sourceRootElem>
+                <sourceRootElem>../../../../../../../include</sourceRootElem>
+            </sourceRootList>
+            <confList>
+                <confElem>
+                    <name>default</name>
+                    <type>2</type>
+                </confElem>
+            </confList>
+            <formatting>
+                <project-formatting-style>false</project-formatting-style>
+            </formatting>
+        </data>
+    </configuration>
+</project>

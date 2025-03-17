@@ -55,7 +55,6 @@
 #include "peripheral/clock/plib_clock.h"
 #include "peripheral/nvic/plib_nvic.h"
 #include "peripheral/systick/plib_systick.h"
-#include "peripheral/pac/plib_pac.h"
 #include "peripheral/sercom/usart/plib_sercom5_usart.h"
 #include "peripheral/eic/plib_eic.h"
 
@@ -68,13 +67,13 @@ extern "C" {
 // DOM-IGNORE-END
 
 /* Device Information */
-#define DEVICE_NAME			 "ATSAMD21G17D"
-#define DEVICE_ARCH			 "CORTEX-M0PLUS"
-#define DEVICE_FAMILY		 "SAMD"
-#define DEVICE_SERIES		 "SAMD21"
+#define DEVICE_NAME          "ATSAMD21G17D"
+#define DEVICE_ARCH          "CORTEX-M0PLUS"
+#define DEVICE_FAMILY        "SAMD"
+#define DEVICE_SERIES        "SAMD21"
 
 /* CPU clock frequency */
-#define CPU_CLOCK_FREQUENCY 48000000
+#define CPU_CLOCK_FREQUENCY 48000000U
 
 // *****************************************************************************
 // *****************************************************************************
