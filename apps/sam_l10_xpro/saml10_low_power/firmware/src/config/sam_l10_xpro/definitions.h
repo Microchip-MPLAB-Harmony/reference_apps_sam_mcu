@@ -51,15 +51,15 @@
 #include <stdio.h>
 #include "peripheral/nvmctrl/plib_nvmctrl.h"
 #include "peripheral/sercom/i2c_master/plib_sercom1_i2c_master.h"
-#include "peripheral/evsys/plib_evsys.h"
 #include "peripheral/sercom/usart/plib_sercom0_usart.h"
+#include "peripheral/evsys/plib_evsys.h"
 #include "peripheral/port/plib_port.h"
 #include "peripheral/clock/plib_clock.h"
 #include "peripheral/nvic/plib_nvic.h"
 #include "peripheral/dmac/plib_dmac.h"
 #include "peripheral/pm/plib_pm.h"
-#include "peripheral/supc/plib_supc.h"
 #include "peripheral/adc/plib_adc.h"
+#include "peripheral/supc/plib_supc.h"
 #include "peripheral/eic/plib_eic.h"
 #include "peripheral/rtc/plib_rtc.h"
 
@@ -72,13 +72,13 @@ extern "C" {
 // DOM-IGNORE-END
 
 /* Device Information */
-#define DEVICE_NAME			 "ATSAML10E16A"
-#define DEVICE_ARCH			 "CORTEX-M23"
-#define DEVICE_FAMILY		 "SAML"
-#define DEVICE_SERIES		 "SAML10"
+#define DEVICE_NAME          "ATSAML10E16A"
+#define DEVICE_ARCH          "CORTEX-M23"
+#define DEVICE_FAMILY        "SAML"
+#define DEVICE_SERIES        "SAML10"
 
 /* CPU clock frequency */
-#define CPU_CLOCK_FREQUENCY 4000000
+#define CPU_CLOCK_FREQUENCY 12000000U
 
 // *****************************************************************************
 // *****************************************************************************
