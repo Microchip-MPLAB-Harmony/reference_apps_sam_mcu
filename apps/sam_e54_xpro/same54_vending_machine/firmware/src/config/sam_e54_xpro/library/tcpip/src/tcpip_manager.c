@@ -235,30 +235,30 @@ static const uint16_t TCPIP_STACK_MODULE_SIGNAL_CONFIG_TBL[] =
 // table containing the layer 1 frames processed by this stack
 static const TCPIP_FRAME_PROCESS_ENTRY TCPIP_FRAME_PROCESS_TBL [] = 
 {
-    // frameType                            // pktTypeFlags             // moduleId 
-    // 1st layer handling
-#if defined(TCPIP_STACK_USE_IPV4)
-    {TCPIP_ETHER_TYPE_ARP,                  TCPIP_MAC_PKT_FLAG_ARP,     TCPIP_MODULE_ARP},  // ARP entry
-#else
-    {TCPIP_ETHER_TYPE_UNKNOWN,              0,                          TCPIP_MODULE_ARP},  // ARP not processed
-#endif  // defined(TCPIP_STACK_USE_IPV4)
-
-#if defined(TCPIP_STACK_USE_IPV4)
-    {TCPIP_ETHER_TYPE_IPV4,                 TCPIP_MAC_PKT_FLAG_IPV4,    TCPIP_MODULE_IPV4},  // IPv4 entry
-#else
-    {TCPIP_ETHER_TYPE_UNKNOWN,              0,                          TCPIP_MODULE_IPV4},  // IPv4 not processed
-#endif  // defined(TCPIP_STACK_USE_IPV4)
-
-#if defined(TCPIP_STACK_USE_IPV6)
-    {TCPIP_ETHER_TYPE_IPV6,                 TCPIP_MAC_PKT_FLAG_IPV6,    TCPIP_MODULE_IPV6},  // IPv6 entry
-#else
-    {TCPIP_ETHER_TYPE_UNKNOWN,              0,                          TCPIP_MODULE_IPV6},  // IPv6 not processed
-#endif // defined(TCPIP_STACK_USE_IPV6)
-
-#if defined(TCPIP_STACK_USE_LLDP)
-    {TCPIP_ETHER_TYPE_LLDP,                 TCPIP_MAC_PKT_FLAG_LLDP,    TCPIP_MODULE_LLDP},  // LLDP entry
-#else
-    {TCPIP_ETHER_TYPE_UNKNOWN,              0,                          TCPIP_MODULE_LLDP},  // LLDP not processed
+    // frameType                                 // moduleId                        // pktTypeFlags         
+    // 1st layer handling                                                                 
+#if defined(TCPIP_STACK_USE_IPV4)                                                         
+    {.frameType = TCPIP_ETHER_TYPE_ARP,         .moduleId = TCPIP_MODULE_ARP,       .pktTypeFlags = TCPIP_MAC_PKT_FLAG_ARP},  // ARP entry
+#else                                                                               
+    {.frameType = TCPIP_ETHER_TYPE_UNKNOWN,     .moduleId = TCPIP_MODULE_ARP,      .pktTypeFlags = 0},                       // ARP not processed
+#endif  // defined(TCPIP_STACK_USE_IPV4)                                            
+                                                                                    
+#if defined(TCPIP_STACK_USE_IPV4)                                                   
+    {.frameType = TCPIP_ETHER_TYPE_IPV4,        .moduleId = TCPIP_MODULE_IPV4,     .pktTypeFlags = TCPIP_MAC_PKT_FLAG_IPV4}, // IPv4 entry
+#else                                                                               
+    {.frameType = TCPIP_ETHER_TYPE_UNKNOWN,     .moduleId = TCPIP_MODULE_IPV4,     .pktTypeFlags = 0},                       // IPv4 not processed
+#endif  // defined(TCPIP_STACK_USE_IPV4)                                            
+                                                                                    
+#if defined(TCPIP_STACK_USE_IPV6)                                                   
+    {.frameType = TCPIP_ETHER_TYPE_IPV6,        .moduleId = TCPIP_MODULE_IPV6,     .pktTypeFlags = TCPIP_MAC_PKT_FLAG_IPV6}, // IPv6 entry
+#else                                                                               
+    {.frameType = TCPIP_ETHER_TYPE_UNKNOWN,     .moduleId = TCPIP_MODULE_IPV6,     .pktTypeFlags = 0},                       // IPv6 not processed
+#endif // defined(TCPIP_STACK_USE_IPV6)                                             
+                                                                                    
+#if defined(TCPIP_STACK_USE_LLDP)                                                   
+    {.frameType = TCPIP_ETHER_TYPE_LLDP,        .moduleId = TCPIP_MODULE_LLDP,     .pktTypeFlags = TCPIP_MAC_PKT_FLAG_LLDP}, // LLDP entry
+#else                                                                               
+    {.frameType = TCPIP_ETHER_TYPE_UNKNOWN,     .moduleId = TCPIP_MODULE_LLDP,     .pktTypeFlags = 0},                       // LLDP not processed
 #endif  // defined(TCPIP_STACK_USE_LLDP)
 
     // add other types of supported frames here
@@ -531,6 +531,9 @@ static const TCPIP_STACK_MODULE_ENTRY TCPIP_STACK_MODULE_ENTRY_TBL [] =
 #if defined(TCPIP_STACK_USE_MAC_BRIDGE)
     {.moduleId = TCPIP_MODULE_MAC_BRIDGE,   .initFunc = (tcpipModuleInitFunc)TCPIP_MAC_Bridge_Initialize,  .deInitFunc = TCPIP_MAC_Bridge_Deinitialize},      // TCPIP_MODULE_MAC_BRIDGE
 #endif 
+#if defined(TCPIP_STACK_USE_HTTP_SERVER_V2)
+    {.moduleId = TCPIP_MODULE_HTTP_SERVER_V2, .initFunc = (tcpipModuleInitFunc)TCPIP_HTTP_Server_Initialize,  .deInitFunc = TCPIP_HTTP_Server_Deinitialize},      // TCPIP_STACK_USE_HTTP_SERVER_V2
+#endif  // defined(TCPIP_STACK_USE_HTTP_SERVER_V2)
     // Add other stack modules here
      
 };
@@ -638,6 +641,9 @@ static const TCPIP_STACK_MODULE_ENTRY TCPIP_STACK_MODULE_ENTRY_TBL [] =
 #if defined(TCPIP_STACK_USE_FTP_CLIENT)
     {.moduleId = TCPIP_MODULE_FTP_CLIENT,   .initFunc = (tcpipModuleInitFunc)TCPIP_FTPC_Initialize},          // TCPIP_MODULE_FTP_CLIENT
 #endif 
+#if defined(TCPIP_STACK_USE_HTTP_SERVER_V2)
+    {.moduleId = TCPIP_MODULE_HTTP_SERVER_V2, .initFunc = (tcpipModuleInitFunc)TCPIP_HTTP_Server_Initialize},   // TCPIP_STACK_USE_HTTP_SERVER_V2
+#endif  // defined(TCPIP_STACK_USE_HTTP_SERVER_V2)
     // Add other stack modules here
      
 };
@@ -1764,6 +1770,9 @@ static bool _TCPIPStackIsRunState(void)
                     memcpy(pNetIf->netMACAddr.v, macParams.ifPhyAddress.v, sizeof(pNetIf->netMACAddr));
                     pNetIf->Flags.bMacProcessOnEvent = macParams.processFlags != TCPIP_MAC_PROCESS_FLAG_NONE;
                     pNetIf->linkMtu = macParams.linkMtu;
+                    pNetIf->txOffload = (uint8_t)macParams.checksumOffloadTx;
+                    pNetIf->rxOffload = (uint8_t)macParams.checksumOffloadRx;
+
                     // enable this interface
                     pNetIf->Flags.bInterfaceEnabled = true;
                     pNetIf->Flags.bMacInitialize = false;
@@ -2934,6 +2943,84 @@ bool TCPIP_STACK_NetAddressDnsSecondSet(TCPIP_NET_HANDLE netH, IPV4_ADDR* ipAddr
     return false;
 }
 
+#if defined(TCPIP_STACK_USE_IPV6)
+// Note: the scope of the ipv6Address should match the scope of an unicast IPv6 net addresses
+bool  TCPIP_STACK_NetDnsIPv6Set(TCPIP_NET_HANDLE netH, const IPV6_ADDR* ipv6Address)
+{
+    if(ipv6Address != NULL)
+    {
+        TCPIP_NET_IF* pNetIf = _TCPIPStackHandleToNet(netH);
+        if(pNetIf != NULL)
+        {
+            IPV6_ADDR_HANDLE    ip6AddHndl = NULL;
+            IPV6_ADDR_STRUCT    ip6AddStr, *pAddStr;
+            IPV6_ADDRESS_TYPE   dnsType;
+
+            (void)memset(&ip6AddStr, 0, sizeof(ip6AddStr));
+            pAddStr = &ip6AddStr;
+
+            dnsType.byte = TCPIP_IPV6_AddressTypeGet(pNetIf, ipv6Address);
+
+            bool res = false;
+            while(true)
+            {
+                ip6AddHndl = TCPIP_STACK_NetIPv6AddressGet(pNetIf, IPV6_ADDR_TYPE_UNICAST, pAddStr, ip6AddHndl);
+                if(ip6AddHndl == NULL)
+                {   // no more valid IPv6 addresses;
+                    break; 
+                }
+                else if(pAddStr->flags.scope == dnsType.bits.scope)
+                {   // found it
+                    res = true;
+                    break;
+                }
+                else
+                {
+                    // continue
+                }
+            }
+
+            if(res != false)
+            {
+                pNetIf->netIPv6Dns[0] = *ipv6Address;
+                pNetIf->Flags.bIpv6DnsValid = 1;
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+bool  TCPIP_STACK_NetDnsIPv6Get(TCPIP_NET_HANDLE netH, IPV6_ADDR* dnsAddress)
+{
+    if(dnsAddress != NULL)
+    {
+        TCPIP_NET_IF* pNetIf = _TCPIPStackHandleToNet(netH);
+        if(pNetIf != NULL)
+        {
+            (void)memset(dnsAddress->v, 0, sizeof(*dnsAddress));
+            if(pNetIf->Flags.bIpv6DnsValid == 1U)
+            {
+                *dnsAddress = pNetIf->netIPv6Dns[0];
+            }
+            return true;
+        }
+    }
+
+    return false;
+}
+#else
+bool TCPIP_STACK_NetDnsIPv6Set(TCPIP_NET_HANDLE netH, const IPV6_ADDR* ipv6Address)
+{
+    return false;
+}
+bool TCPIP_STACK_NetDnsIPv6Get(TCPIP_NET_HANDLE netH, IPV6_ADDR* dnsAddress)
+{
+    return false;
+}
+#endif  // defined(TCPIP_STACK_USE_IPV6)
+
 uint32_t TCPIP_STACK_NetMask(TCPIP_NET_HANDLE netH)
 {
     TCPIP_NET_IF* pNetIf = _TCPIPStackHandleToNetUp(netH);
@@ -3227,6 +3314,9 @@ TCPIP_NETWORK_CONFIG*   TCPIP_STACK_NetConfigSet(void* configStoreBuff, void* ne
 
         TCPIP_Helper_IPv6AddressToString(&pNetStg->netIPv6Gateway, tempBuff, sizeof(tempBuff) - 1);
         pNetConf->ipv6Gateway = _NetConfigStringToBuffer(&pDstBuff, tempBuff, &dstSize, &needLen, &actualLen);
+        
+        (void) TCPIP_Helper_IPv6AddressToString(pNetStg->netIPv6Dns, tempBuff, sizeof(tempBuff) - 1U);
+        pNetConf->ipv6Dns = _NetConfigStringToBuffer(&pDstBuff, tempBuff, &dstSize, &needLen, &actualLen);
     }
 
 #endif  // defined(TCPIP_STACK_USE_IPV6)
@@ -3602,7 +3692,7 @@ static bool _LoadNetworkConfig(const TCPIP_NETWORK_CONFIG* pUsrConfig, TCPIP_NET
     bool    loadFault;
     const void*  pMacConfig = 0;             // MAC configuration save
 #if (_TCPIP_STACK_ALIAS_INTERFACE_SUPPORT)
-	TCPIP_MAC_ADDR	oldMACAddr;
+    TCPIP_MAC_ADDR  oldMACAddr;
     oldMACAddr.v[0] = 0;
     oldMACAddr.v[1] = 0;
     oldMACAddr.v[2] = 0;
@@ -3676,16 +3766,44 @@ static bool _LoadNetworkConfig(const TCPIP_NETWORK_CONFIG* pUsrConfig, TCPIP_NET
 #if defined(TCPIP_STACK_USE_IPV6)
         if((pNetIf->startFlags & TCPIP_NETWORK_CONFIG_IPV6_ADDRESS) != 0)
         {
+            bool configIPv6 = true;
+
             pNetIf->ipv6PrefixLen = (uint16_t)pUsrConfig->ipv6PrefixLen;
-            if(pUsrConfig->ipv6Addr == 0 || !TCPIP_Helper_StringToIPv6Address (pUsrConfig->ipv6Addr, &pNetIf->netIPv6Addr))
-            {   // ignore the static IPv6 address if incorrect
-                pNetIf->startFlags &= ~TCPIP_NETWORK_CONFIG_IPV6_ADDRESS;
-            }
-            else if(pUsrConfig->ipv6Gateway != 0 && !TCPIP_Helper_StringToIPv6Address (pUsrConfig->ipv6Gateway, &pNetIf->netIPv6Gateway))
-            {   // ignore the IPv6 gateway if incorrect; gateway == 0 is allowed.
-                pNetIf->startFlags &= ~TCPIP_NETWORK_CONFIG_IPV6_ADDRESS;
+
+            // ignore the static IPv6 address if incorrect
+            if(pUsrConfig->ipv6Addr == 0)
+            {
+                if(!TCPIP_Helper_StringToIPv6Address (pUsrConfig->ipv6Addr, &pNetIf->netIPv6Addr))
+                {
+                    configIPv6 = false;
+                }
             }
 
+            // ignore the IPv6 gateway if incorrect; gateway == 0 is allowed.
+            if(pUsrConfig->ipv6Gateway != 0)
+            {
+                if(!TCPIP_Helper_StringToIPv6Address (pUsrConfig->ipv6Gateway, &pNetIf->netIPv6Gateway))
+                {   
+                    configIPv6 = false;
+                }
+            }
+            // load the IPv6 DNS if provided
+            if(pUsrConfig->ipv6Dns != NULL)
+            {
+                if(!TCPIP_Helper_StringToIPv6Address (pUsrConfig->ipv6Dns, &pNetIf->netIPv6Dns[0]))
+                {   // incorrect DNS address
+                    configIPv6 = false;
+                }
+                else
+                {
+                    pNetIf->Flags.bIpv6DnsValid = 1;
+                }
+            }
+
+            if(configIPv6 == false)
+            {
+                pNetIf->startFlags &= ~TCPIP_NETWORK_CONFIG_IPV6_ADDRESS;
+            }
         }
 #endif  // defined(TCPIP_STACK_USE_IPV6)
 
@@ -3779,6 +3897,7 @@ TCPIP_EVENT_HANDLE    TCPIP_STACK_HandlerRegister(TCPIP_NET_HANDLE hNet, TCPIP_E
         eventNode.hParam = hParam;
         eventNode.evMask = evMask;
         eventNode.pNetIf = pNetIf;
+        eventNode.next   = NULL;        
 
         return (TCPIP_EVENT_LIST_NODE*)TCPIP_Notification_Add(&pNetIf->registeredClients, tcpip_stack_ctrl_data.memH, &eventNode, sizeof(eventNode));
     }
@@ -4207,10 +4326,10 @@ bool _TCPIPStackSignalHandlerSetParams(TCPIP_STACK_MODULE modId, tcpipSignalHand
     TCPIP_MODULE_SIGNAL_ENTRY* pSignalEntry = (TCPIP_MODULE_SIGNAL_ENTRY*)handle;
     if((pSignalEntry = (TCPIP_MODULE_SIGNAL_ENTRY*)handle) != 0 && pSignalEntry->signalHandler != 0)
     {   // minimum sanity check
-		if ((asyncTmoMs != 0) && (asyncTmoMs < stackTaskRate))
-		{
+        if ((asyncTmoMs != 0) && (asyncTmoMs < stackTaskRate))
+        {
             asyncTmoMs = stackTaskRate;
-		}
+        }
         pSignalEntry->asyncTmo = pSignalEntry->currTmo = asyncTmoMs;
         return true;
     }
