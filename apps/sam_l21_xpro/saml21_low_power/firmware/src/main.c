@@ -17,7 +17,7 @@
  *******************************************************************************/
  
 /*******************************************************************************
-* Copyright (C) 2020 Microchip Technology Inc. and its subsidiaries.
+* Copyright (C) 2025 Microchip Technology Inc. and its subsidiaries.
 *
 * Subject to your compliance with these terms, you may use Microchip software
 * and any derivatives exclusively with Microchip products. It is your
@@ -87,7 +87,7 @@ static void dmaChannel0Handler (DMAC_TRANSFER_EVENT event, uintptr_t contextHand
     }
 }
 
-/* Handler for I²C interrupt */
+/* Handler for I?C interrupt */
 static void i2cEventHandler (uintptr_t contextHandle)
 {
     /* Check that there were no error during SERCOM2_I2C read for temperature */
@@ -120,12 +120,12 @@ static void EIC_User_Handler (uintptr_t context)
 /***************************************************************************************
  * Convert the temperature value read from sensor to readable format (Degree Fahrenheit)
  * For demonstration purpise, temperature value is assumed to be positive
- * The maximum positive temperature measured by sensor is +257 °F (+125 °C) 
+ * The maximum positive temperature measured by sensor is +257 ?F (+125 ?C) 
  **************************************************************************************/
 static uint8_t getTemperature (uint8_t* rawTempValue)
 {
     uint16_t temp;
-    /* Convert measured value in Degree Fahrenheit (°F) */
+    /* Convert measured value in Degree Fahrenheit (?F) */
     temp = (rawTempValue[0] << 8) | rawTempValue[1];
     temp = (temp >> 7) * 0.5;
     temp = (temp * 9/5) + 32;
@@ -147,7 +147,7 @@ int main ( void )
     /* Initialize the EIC callback register */
     EIC_CallbackRegister (EIC_PIN_2, EIC_User_Handler, 0);
 
-    /* Initialize the SERCOM 2 I²C callback register */
+    /* Initialize the SERCOM 2 I?C callback register */
     SERCOM2_I2C_CallbackRegister (i2cEventHandler, 0);
 
     /* Initialize the DMA channel 0 callback register */
@@ -180,7 +180,7 @@ int main ( void )
             LED0_Clear ();
             /* Display message on terminal */
             printf ("ADC_WINMON Interrupt Detected. Wake-up from sleep mode.\n\r");
-            /* Read the temperature sensor value from I/O1 Xplained Pro through SERCOM2 I²C */
+            /* Read the temperature sensor value from I/O1 Xplained Pro through SERCOM2 I?C */
             SERCOM2_I2C_WriteRead (TEMP_SENSOR_SLAVE_ADDR, &i2cWrData, 1, i2cRdData, 2);
         }
         
