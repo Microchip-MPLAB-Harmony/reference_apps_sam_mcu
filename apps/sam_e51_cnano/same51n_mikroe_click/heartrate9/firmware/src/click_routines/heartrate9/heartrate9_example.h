@@ -43,7 +43,7 @@
 // DOM-IGNORE-END
 
 #ifndef _HEARTRATE9_EXAMPLE_H
-#define	_HEARTRATE9_EXAMPLE_H
+#define _HEARTRATE9_EXAMPLE_H
 
 void heartrate9_example(void);
 

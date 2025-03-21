@@ -5,10 +5,10 @@
     Microchip Technology Inc.
 
   File Name:
-    debug_console.c
+    gcc_monitor.c
 
   Summary:
-    RSTC Source File
+    GCC Monitor Source File
 
   Description:
     None

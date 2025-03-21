@@ -44,7 +44,7 @@
 // DOM-IGNORE-END
 
 #ifndef _IR_THERMO2_H
-#define	_IR_THERMO2_H
+#define _IR_THERMO2_H
 
 /**
   Section: Included Files

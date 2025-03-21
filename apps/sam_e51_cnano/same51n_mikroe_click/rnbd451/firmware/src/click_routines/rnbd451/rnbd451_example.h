@@ -8,8 +8,8 @@
     rnbd451_example.h
 
   Summary:
-  This file contains the "rnbd451" example 
- * 
+  This file contains the "rnbd451" example,
+
   Description:
  *******************************************************************************/
 

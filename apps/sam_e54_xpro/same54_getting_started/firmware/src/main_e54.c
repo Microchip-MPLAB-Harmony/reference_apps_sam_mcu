@@ -5,7 +5,7 @@
     Microchip Technology Inc.
 
   File Name:
-    main.c
+    main_e54.c
 
   Summary:
     This file contains the "main" function for a project.

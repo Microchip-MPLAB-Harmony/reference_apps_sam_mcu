@@ -44,7 +44,7 @@
 // DOM-IGNORE-END
 
 #ifndef _HEARTRATE9_H
-#define	_HEARTRATE9_H
+#define _HEARTRATE9_H
 
 /**
   Section: Included Files

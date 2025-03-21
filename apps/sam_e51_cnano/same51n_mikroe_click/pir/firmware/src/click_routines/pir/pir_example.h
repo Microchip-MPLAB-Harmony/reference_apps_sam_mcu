@@ -37,7 +37,7 @@
 // DOM-IGNORE-END
 
 #ifndef _PIR_EXAMPLE_H
-#define	_PIR_EXAMPLE_H
+#define _PIR_EXAMPLE_H
 
 void Pir_example(void);
 

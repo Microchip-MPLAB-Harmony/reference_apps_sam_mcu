@@ -1,14 +1,14 @@
 /*******************************************************************************
-  led driver 3 Header file
+  WiFi-7 Click Header file
 
   Company:
     Microchip Technology Inc.
 
   File Name:
-    leddriver3.h
+    wifi_7.h
 
   Summary:
-    This file contains the "led driver" function header and constant Definitions 
+    This file contains the "WiFi-7 " function header and constant Definitions 
  * 
   Description:
  *******************************************************************************/

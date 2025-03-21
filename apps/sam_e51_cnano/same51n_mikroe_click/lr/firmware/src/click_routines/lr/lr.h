@@ -44,7 +44,7 @@
 // DOM-IGNORE-END
 
 #ifndef _LR_H
-#define	_LR_H
+#define _LR_H
 
 /**
   Section: Included Files

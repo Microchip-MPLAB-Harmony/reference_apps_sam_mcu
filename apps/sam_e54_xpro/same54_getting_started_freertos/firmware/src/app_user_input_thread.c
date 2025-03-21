@@ -5,7 +5,7 @@
     Microchip Technology Inc.
 
   File Name:
-    app2_user_input_thread.c
+    app_user_input_thread.c
 
   Summary:
     This file contains the source code for the MPLAB Harmony application.
