@@ -85,8 +85,8 @@
 
 /* Variable to save Tx/Rx transfer status and context */
 
-bool app_can_config_flag=0,rx_character=0; 
-volatile uint8_t app_buffer_read[10],app_buffer_index=0,app_temp=0, app_boot_buffer_read[60];
+bool app_can_config_flag=0, rx_character=0; 
+volatile uint8_t app_buffer_read[10], app_buffer_index=0, app_temp=0, app_boot_buffer_read[60];
 
 
 #define APP_IMAGE_START_ADDR        0x2000UL  
@@ -175,7 +175,7 @@ APP_DATA                            appBootData;
 static uint8_t CACHE_ALIGN          can1MessageRAM[CAN1_MESSAGE_RAM_CONFIG_SIZE];
 
 bool app_boot_can_dataframe=0,app_boot_can_protocolheader=0,app_boot_crc_check=0;
-static uint32_t status = 0;
+static uint32_t app_usb_status = 0;
 static uint8_t loop_count = 0;
 static volatile uint32_t nTxBytes,app_size=0,crc=0,can_id=0;
 static CAN_TX_BUFFER *txBuffer = NULL;
@@ -794,8 +794,8 @@ void APP_Boot_CheckBTLResponse(void)
     uint32_t id = 0;
     COMMON_APP_CAN_Rx_DataStatus(false);
         /* Check CAN1 Status */
-        status = CAN1_ErrorGet();
-        if (((status & CAN_PSR_LEC_Msk) == CAN_ERROR_NONE) || ((status & CAN_PSR_LEC_Msk) == CAN_ERROR_LEC_NC))
+        app_usb_status = CAN1_ErrorGet();
+        if (((app_usb_status & CAN_PSR_LEC_Msk) == CAN_ERROR_NONE) || ((app_usb_status & CAN_PSR_LEC_Msk) == CAN_ERROR_LEC_NC))
         {
             numberOfMessage = COMMON_APP_CAN_message_count();
             if (numberOfMessage != 0)

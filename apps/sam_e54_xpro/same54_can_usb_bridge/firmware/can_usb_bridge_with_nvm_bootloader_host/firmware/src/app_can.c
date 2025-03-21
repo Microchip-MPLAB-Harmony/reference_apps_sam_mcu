@@ -75,7 +75,7 @@
 */
 
 /* Variable to save Tx/Rx transfer status and context */
-static uint32_t status = 0;
+static uint32_t app_can_status = 0;
 
 /*Rx FIFO 0 */
 static uint8_t rxFiFo0[CAN1_RX_FIFO0_SIZE];
@@ -99,9 +99,9 @@ void APP_CAN_RxFifo0Callback(uint8_t numberOfMessage, uintptr_t context)
 {
 
     /* Check CAN Status */
-    status = CAN1_ErrorGet();
+    app_can_status = CAN1_ErrorGet();
 
-    if (((status & CAN_PSR_LEC_Msk) == CAN_ERROR_NONE) || ((status & CAN_PSR_LEC_Msk) == CAN_ERROR_LEC_NC))
+    if (((app_can_status & CAN_PSR_LEC_Msk) == CAN_ERROR_NONE) || ((app_can_status & CAN_PSR_LEC_Msk) == CAN_ERROR_LEC_NC))
     {
 
                 memset(rxFiFo0, 0x00, (numberOfMessage * CAN1_RX_FIFO0_ELEMENT_SIZE));

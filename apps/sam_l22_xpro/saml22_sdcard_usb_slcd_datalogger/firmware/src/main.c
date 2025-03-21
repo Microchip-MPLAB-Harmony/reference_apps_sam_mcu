@@ -83,8 +83,6 @@ static void EIC_User_Handler(uintptr_t context);
 extern volatile bool LoggedDataRead;
 volatile bool timeInputRead =0;
 extern APP_DATA appData;
-bool errorStatus = false;
-bool readStatus = false;
 char receiveBuffer[1] = {};
 
 // *****************************************************************************
@@ -121,8 +119,6 @@ int main ( void )
     {
         /* Maintain state machines of all polled MPLAB Harmony modules. */
         SYS_Tasks ( );
-        
-    
     }
 
     /* Execution should not come here during normal operation */

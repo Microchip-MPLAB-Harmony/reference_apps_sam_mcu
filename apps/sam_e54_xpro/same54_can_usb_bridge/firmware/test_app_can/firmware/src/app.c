@@ -122,7 +122,7 @@ static uint8_t rxFiFo0[CAN1_RX_FIFO0_SIZE];
 static uint8_t rxFiFo1[CAN1_RX_FIFO1_SIZE];
 static uint8_t rxBuffer[CAN1_RX_BUFFER_SIZE];
 
-CAN_TX_BUFFER *txBuffer = NULL;
+CAN_TX_BUFFER *appCanTxBuffer = NULL;
 
 // *****************************************************************************
 // *****************************************************************************
@@ -430,90 +430,90 @@ void CAN_Task()
             {
 				case '0':
                     memset(txFiFo, 0x00, CAN1_TX_FIFO_BUFFER_ELEMENT_SIZE);
-                    txBuffer = (CAN_TX_BUFFER *)txFiFo;
-                    txBuffer->id = WRITE_ID(0x44A);
-                    txBuffer->dlc = CANLengthToDlcGet(64);
-                    txBuffer->fdf = 1;
-                    txBuffer->brs = 1;
+                    appCanTxBuffer = (CAN_TX_BUFFER *)txFiFo;
+                    appCanTxBuffer->id = WRITE_ID(0x44A);
+                    appCanTxBuffer->dlc = CANLengthToDlcGet(64);
+                    appCanTxBuffer->fdf = 1;
+                    appCanTxBuffer->brs = 1;
 					for (loop_count = 0; loop_count < 64; loop_count++){
-						txBuffer->data[loop_count] = loop_count;
+						appCanTxBuffer->data[loop_count] = loop_count;
 					}                
 					printf("  0: Send FD standard message with ID: 0x44A and 64 byte data 0 to 63.\r\n");
                     CAN1_TxFifoCallbackRegister( APP_CAN_TxFifoCallback, (uintptr_t)APP_STATE_CAN_TRANSMIT );
                     state = APP_STATE_CAN_IDLE;
-                    if (CAN1_MessageTransmitFifo(1, txBuffer) == false)
+                    if (CAN1_MessageTransmitFifo(1, appCanTxBuffer) == false)
                     {
                         printf(" Failed \r\n");
                     }             
                     break;
 				case '1':
                     memset(txFiFo, 0x00, CAN1_TX_FIFO_BUFFER_ELEMENT_SIZE);
-                    txBuffer = (CAN_TX_BUFFER *)txFiFo;
-                    txBuffer->id = WRITE_ID(0x469);
-                    txBuffer->dlc = CANLengthToDlcGet(64);
-                    txBuffer->fdf = 1;
-                    txBuffer->brs = 1;
+                    appCanTxBuffer = (CAN_TX_BUFFER *)txFiFo;
+                    appCanTxBuffer->id = WRITE_ID(0x469);
+                    appCanTxBuffer->dlc = CANLengthToDlcGet(64);
+                    appCanTxBuffer->fdf = 1;
+                    appCanTxBuffer->brs = 1;
 					for (loop_count = 128; loop_count < 192; loop_count++){
-						txBuffer->data[loop_count - 128] = loop_count;
+						appCanTxBuffer->data[loop_count - 128] = loop_count;
 					}                
  					printf("  1: Send FD standard message with ID: 0x469 and 64 byte data 128 to 191.\r\n");
 					CAN1_TxFifoCallbackRegister( APP_CAN_TxFifoCallback, (uintptr_t)APP_STATE_CAN_TRANSMIT );
                     state = APP_STATE_CAN_IDLE;
-					if (CAN1_MessageTransmitFifo(1, txBuffer) == false)
+					if (CAN1_MessageTransmitFifo(1, appCanTxBuffer) == false)
                     {
                         printf(" Failed \r\n");
                     }             
                     break;
 				case '2':
                     memset(txFiFo, 0x00, CAN1_TX_FIFO_BUFFER_ELEMENT_SIZE);
-                    txBuffer = (CAN_TX_BUFFER *)txFiFo;
-                    txBuffer->id = 0x100000A5;
-                    txBuffer->dlc = CANLengthToDlcGet(64);
-                    txBuffer->xtd = 1;
-                    txBuffer->fdf = 1;
-                    txBuffer->brs = 1;
+                    appCanTxBuffer = (CAN_TX_BUFFER *)txFiFo;
+                    appCanTxBuffer->id = 0x100000A5;
+                    appCanTxBuffer->dlc = CANLengthToDlcGet(64);
+                    appCanTxBuffer->xtd = 1;
+                    appCanTxBuffer->fdf = 1;
+                    appCanTxBuffer->brs = 1;
 					for (loop_count = 0; loop_count < 64; loop_count++){
-						txBuffer->data[loop_count] = loop_count;
+						appCanTxBuffer->data[loop_count] = loop_count;
 					}
 					printf("  2: Send FD extended message with ID: 0x100000A5 and 64 byte data 0 to 63.\r\n");
                     CAN1_TxFifoCallbackRegister( APP_CAN_TxFifoCallback, (uintptr_t)APP_STATE_CAN_TRANSMIT );
                     state = APP_STATE_CAN_IDLE;
-                    if (CAN1_MessageTransmitFifo(1, txBuffer) == false)
+                    if (CAN1_MessageTransmitFifo(1, appCanTxBuffer) == false)
                     {
                         printf(" Failed \r\n");
                     }
                     break;
 				case '3':
                     memset(txFiFo, 0x00, CAN1_TX_FIFO_BUFFER_ELEMENT_SIZE);
-                    txBuffer = (CAN_TX_BUFFER *)txFiFo;
-                    txBuffer->id = 0x10000096;
-                    txBuffer->dlc = CANLengthToDlcGet(64);
-                    txBuffer->xtd = 1;
-                    txBuffer->fdf = 1;
-                    txBuffer->brs = 1;
+                    appCanTxBuffer = (CAN_TX_BUFFER *)txFiFo;
+                    appCanTxBuffer->id = 0x10000096;
+                    appCanTxBuffer->dlc = CANLengthToDlcGet(64);
+                    appCanTxBuffer->xtd = 1;
+                    appCanTxBuffer->fdf = 1;
+                    appCanTxBuffer->brs = 1;
 					for (loop_count = 128; loop_count < 192; loop_count++){
-						txBuffer->data[loop_count - 128] = loop_count;
+						appCanTxBuffer->data[loop_count - 128] = loop_count;
 					}
 					printf("  3: Send FD extended message with ID: 0x10000096 and 64 byte data 128 to 191.\r\n");
                     CAN1_TxFifoCallbackRegister( APP_CAN_TxFifoCallback, (uintptr_t)APP_STATE_CAN_TRANSMIT );
                     state = APP_STATE_CAN_IDLE;
-                    if (CAN1_MessageTransmitFifo(1, txBuffer) == false)
+                    if (CAN1_MessageTransmitFifo(1, appCanTxBuffer) == false)
                     {
                         printf(" Failed \r\n");
                     }
                     break;
 				case '4':
                     memset(txFiFo, 0x00, CAN1_TX_FIFO_BUFFER_ELEMENT_SIZE);
-                    txBuffer = (CAN_TX_BUFFER *)txFiFo;
-					txBuffer->id = WRITE_ID(0x469);
-                    txBuffer->dlc = 8;
+                    appCanTxBuffer = (CAN_TX_BUFFER *)txFiFo;
+					appCanTxBuffer->id = WRITE_ID(0x469);
+                    appCanTxBuffer->dlc = 8;
 					for (loop_count = 0; loop_count < 8; loop_count++){
-						txBuffer->data[loop_count] = loop_count;
+						appCanTxBuffer->data[loop_count] = loop_count;
 					}                
  					printf("  4: Send normal standard message with ID: 0x469 and 8 byte data 0 to 7.\r\n");
 					CAN1_TxFifoCallbackRegister( APP_CAN_TxFifoCallback, (uintptr_t)APP_STATE_CAN_TRANSMIT );
                     state = APP_STATE_CAN_IDLE;
-					if (CAN1_MessageTransmitFifo(1, txBuffer) == false)
+					if (CAN1_MessageTransmitFifo(1, appCanTxBuffer) == false)
                     {
                         printf(" Failed \r\n");
                     }             

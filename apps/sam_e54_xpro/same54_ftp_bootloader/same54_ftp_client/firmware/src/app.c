@@ -106,7 +106,7 @@ bool bin_downloaded = false;
 volatile uint8_t count_down = 5;
 extern TCPIP_FTPC_CONN_HANDLE_TYPE ftpcHandle;
 /* Application data buffer */
-uint32_t CACHE_ALIGN dataBuffer[WORDS(APP_DATA_LEN)];
+uint32_t CACHE_ALIGN app_dataBuffer[WORDS(APP_DATA_LEN)];
 
 
 const SYS_CMD_DESCRIPTOR    appCmdTbl[]=
@@ -222,7 +222,7 @@ void APP_Flash_Task(void)
     while(NVMCTRL_IsBusy() == true);
     for (page = 0; page < PAGES_IN_ERASE_BLOCK; page++)
     {
-        NVMCTRL_PageWrite(&dataBuffer[write_idx], addr);
+        NVMCTRL_PageWrite(&app_dataBuffer[write_idx], addr);
         while(NVMCTRL_IsBusy() == true);
         addr += PAGE_SIZE;
         write_idx += WORDS(PAGE_SIZE);
@@ -429,7 +429,7 @@ void APP_Tasks ( void )
         case APP_READ_FILE:
             
             appData.fileSize = SYS_FS_FileSize(appData.fileHandle);
-            appData.nBytesRead = SYS_FS_FileRead(appData.fileHandle, (void *)dataBuffer, appData.fileSize);
+            appData.nBytesRead = SYS_FS_FileRead(appData.fileHandle, (void *)app_dataBuffer, appData.fileSize);
             
             if (appData.nBytesRead == -1)
             {
